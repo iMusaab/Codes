@@ -12,6 +12,7 @@ struct StoreCode: Codable {
     var title: String = ""
     var Description: String = ""
     var votes: Int = 0
+    var votedBy: [String]?
 }
 
 extension StoreCode {

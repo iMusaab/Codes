@@ -14,6 +14,8 @@ struct AddCodeView: View {
     
     @State private var storeCodeVS = StoreCodesViewState()
     
+    @ObservedObject private var regesterVM = CreateUserViewModel()
+    
     let store: StoreViewModel
     
     var body: some View {
@@ -32,7 +34,7 @@ struct AddCodeView: View {
                     addCodeVM.addCodeToStore(storeId: store.storeId, storeCodeVS: storeCodeVS) { error in
                         if error == nil {
                             storeCodeVS = StoreCodesViewState()
-                            storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId)
+                            storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
                         }
                     }
                     

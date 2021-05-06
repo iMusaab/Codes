@@ -11,6 +11,8 @@ struct ContentView: View {
     
     @ObservedObject private var storeListVM = StoreListViewMode()
     
+    @StateObject private var regesterVM = CreateUserViewModel()
+    
     var body: some View {
         VStack {
             List(storeListVM.stores, id: \.storeId) { store in
@@ -28,6 +30,11 @@ struct ContentView: View {
         
         .onAppear {
             storeListVM.getAll()
+            
+            regesterVM.CreateUser {_ in
+                print("User created")
+                
+            }
         }
     }
 }

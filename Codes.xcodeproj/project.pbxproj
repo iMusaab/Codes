@@ -22,6 +22,8 @@
 		D6B6CE11263C2286006EAF64 /* StoreCodesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE10263C2286006EAF64 /* StoreCodesListView.swift */; };
 		D6B6CE17263C2DE3006EAF64 /* AddCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE16263C2DE3006EAF64 /* AddCodeView.swift */; };
 		D6B6CE1A263C2E27006EAF64 /* AddCodeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE19263C2E27006EAF64 /* AddCodeVM.swift */; };
+		D6B6CE2026405BC6006EAF64 /* CreateUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE1F26405BC6006EAF64 /* CreateUserVM.swift */; };
+		D6B6CE2326407999006EAF64 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE2226407999006EAF64 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		D6B6CE10263C2286006EAF64 /* StoreCodesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCodesListView.swift; sourceTree = "<group>"; };
 		D6B6CE16263C2DE3006EAF64 /* AddCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCodeView.swift; sourceTree = "<group>"; };
 		D6B6CE19263C2E27006EAF64 /* AddCodeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCodeVM.swift; sourceTree = "<group>"; };
+		D6B6CE1F26405BC6006EAF64 /* CreateUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserVM.swift; sourceTree = "<group>"; };
+		D6B6CE2226407999006EAF64 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,7 @@
 			children = (
 				D6A978482639DDE6003422B3 /* Store.swift */,
 				D6B6CE0A263C1A34006EAF64 /* StoreCode.swift */,
+				D6B6CE2226407999006EAF64 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 				D6A9785B2639EB93003422B3 /* StoreListVM.swift */,
 				D6B6CE0D263C1B43006EAF64 /* StoreCodesVM.swift */,
 				D6B6CE19263C2E27006EAF64 /* AddCodeVM.swift */,
+				D6B6CE1F26405BC6006EAF64 /* CreateUserVM.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -277,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6B6CE2326407999006EAF64 /* User.swift in Sources */,
 				D6A978492639DDE6003422B3 /* Store.swift in Sources */,
 				D6B6CE1A263C2E27006EAF64 /* AddCodeVM.swift in Sources */,
 				D6A9777E2639D552003422B3 /* ContentView.swift in Sources */,
@@ -288,6 +295,7 @@
 				D6B6CE17263C2DE3006EAF64 /* AddCodeView.swift in Sources */,
 				D6B6CE11263C2286006EAF64 /* StoreCodesListView.swift in Sources */,
 				D6A9784E2639DEB2003422B3 /* FireStoreManager.swift in Sources */,
+				D6B6CE2026405BC6006EAF64 /* CreateUserVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

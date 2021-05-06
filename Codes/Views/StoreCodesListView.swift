@@ -14,12 +14,11 @@ struct StoreCodesListView: View {
     
     @State private var isPresented = false
     
-    
+    @ObservedObject private var regesterVM = CreateUserViewModel()
     
     var body: some View {
-        
         List {
-            ForEach(storeCodeListVM.storeCodes, id: \.storeCodeId) { code in
+            ForEach(Array(zip(storeCodeListVM.storeCodes, storeCodeListVM.enableVote)), id: \.0) { code, voteEnabled in
                 HStack {
                     VStack{
                     Text(code.title)
@@ -33,18 +32,20 @@ struct StoreCodesListView: View {
                     HStack {
                         VStack {
                             Button(action: {
-                                storeCodeListVM.updateCodeVotes(storeId: store.storeId, storeCodeId: code.storeCodeId, upOrDown: .up)
+                                storeCodeListVM.updateCodeVotes(storeId: store.storeId, storeCodeId: code.storeCodeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "", upOrDown: .up)
+                                storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
                             }, label: {
                                 Image(systemName: "arrowtriangle.up.fill")
-                            })
+                            }).disabled(voteEnabled)
                             
                             Spacer()
                             
                             Button(action: {
-                                storeCodeListVM.updateCodeVotes(storeId: store.storeId, storeCodeId: code.storeCodeId, upOrDown: .down)
-                            }, label: {
+                                storeCodeListVM.updateCodeVotes(storeId: store.storeId, storeCodeId: code.storeCodeId, userId:regesterVM.defaults.string(forKey: "userId") ?? "", upOrDown: .down)
+                                storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
+                                                            }, label: {
                                 Image(systemName: "arrowtriangle.down.fill")
-                            })
+                            }).disabled(voteEnabled)
                             
                         }
                         .buttonStyle(BorderlessButtonStyle())
@@ -54,10 +55,11 @@ struct StoreCodesListView: View {
             }
             .onChange(of: storeCodeListVM.saved, perform: { value in
                 if value {
-                    storeCodeListVM.getStoreById(storeId: store.storeId)
+                    storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
+                    
                 }
                 
-                })
+            })
         }
         
         
@@ -75,7 +77,7 @@ struct StoreCodesListView: View {
             Image(systemName: "plus")
         }))
         .onAppear(perform: {
-                    storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId)
+            storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
             
         })
         

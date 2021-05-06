@@ -8,7 +8,17 @@
 import Foundation
 
 
-struct StoreCodeViewModel {
+struct StoreCodeViewModel: Hashable {
+    static func == (lhs: StoreCodeViewModel, rhs: StoreCodeViewModel) -> Bool {
+        return lhs.storeCodeId == rhs.storeCodeId
+    }
+    
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(storeCodeId)
+    }
+    
+    
     let storeCode: StoreCode
     
     var storeCodeId: String {
@@ -26,6 +36,10 @@ struct StoreCodeViewModel {
     var votes: Int {
         storeCode.votes
     }
+    
+    var votedBy: [String] {
+        storeCode.votedBy ?? []
+    }
 }
 
 class StoreCodeListViewModel: ObservableObject {
@@ -35,11 +49,15 @@ class StoreCodeListViewModel: ObservableObject {
     @Published var store: StoreViewModel?
     @Published var storeCodes: [StoreCodeViewModel] = []
     @Published var saved: Bool = false
+    @Published var enableVote: [Bool] = []
     
     
-    func updateCodeVotes(storeId: String, storeCodeId: String, upOrDown: codeVote) {
+    
+    
+    
+    func updateCodeVotes(storeId: String, storeCodeId: String, userId: String, upOrDown: codeVote) {
         
-        firestoreManager.updateCodeVotes(storeId: storeId, storeCodeId: storeCodeId, upOrDown: upOrDown) { result in
+        firestoreManager.updateCodeVotes(storeId: storeId, storeCodeId: storeCodeId, userId: userId, upOrDown: upOrDown) { result in
             switch result {
             case .success(_):
                 self.saved = true
@@ -52,14 +70,27 @@ class StoreCodeListViewModel: ObservableObject {
     }
     
     
-    func getStoreCodesByStoreId(storeId: String) {
-        
+    func getStoreCodesByStoreId(storeId: String, userId: String) {
+        var enableVote: [Bool] = []
         firestoreManager.getStoreCodesBy(storeId: storeId) { result in
             switch result {
             case .success(let codes):
+                
+                
                 if let codes = codes {
+                    for code in codes {
+                        if let votedBy = code.votedBy {
+                            if votedBy.contains(userId) {
+                                enableVote.append(true)
+                            } else {
+                                enableVote.append(false)
+                            }
+                            
+                        }
+                    }
                     DispatchQueue.main.async {
                         self.storeCodes = codes.map(StoreCodeViewModel.init)
+                        self.enableVote = enableVote
                     }
                 }
             case .failure(let error):

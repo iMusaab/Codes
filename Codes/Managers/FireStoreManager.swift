@@ -17,18 +17,19 @@ class FirestoreManager {
         db = Firestore.firestore()
     }
     
-    func updateCodeVotes(storeId: String, storeCodeId: String, upOrDown: codeVote, completion: @escaping (Result<[StoreCode]?, Error>) -> Void) {
+    func updateCodeVotes(storeId: String, storeCodeId: String, userId: String, upOrDown: codeVote, completion: @escaping (Result<[StoreCode]?, Error>) -> Void) {
         
         let codeRef = db.collection("stores")
             .document(storeId)
             .collection("codes")
             .document(storeCodeId)
-        
+
         switch upOrDown {
         case .up:
             codeRef.updateData(
                 [
-                    "votes": FieldValue.increment(Int64(1))
+                    "votes": FieldValue.increment(Int64(1)),
+                    "votedBy": FieldValue.arrayUnion([userId])
                 ])
             self.getStoreCodesBy(storeId: storeId) { result in
                     switch result {
@@ -43,7 +44,8 @@ class FirestoreManager {
         case .down:
             codeRef.updateData(
                 [
-                    "votes": FieldValue.increment(Int64(-1))
+                    "votes": FieldValue.increment(Int64(-1)),
+                    "votedBy": FieldValue.arrayUnion([userId])
                 ])
         }
     
