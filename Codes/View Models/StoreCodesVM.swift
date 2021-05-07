@@ -50,6 +50,7 @@ class StoreCodeListViewModel: ObservableObject {
     @Published var storeCodes: [StoreCodeViewModel] = []
     @Published var saved: Bool = false
     @Published var enableVote: [Bool] = []
+    @Published var isDisabled : Bool = false
     
     
     
@@ -91,6 +92,7 @@ class StoreCodeListViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.storeCodes = codes.map(StoreCodeViewModel.init)
                         self.enableVote = enableVote
+                        self.isDisabled = false
                     }
                 }
             case .failure(let error):

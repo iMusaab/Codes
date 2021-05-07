@@ -56,6 +56,7 @@ class FirestoreManager {
         db.collection("stores")
             .document(storeId)
             .collection("codes")
+            .order(by: "votes", descending: true)
             .getDocuments { (snapshot, error) in
                 if let error = error {
                     completion(.failure(error))

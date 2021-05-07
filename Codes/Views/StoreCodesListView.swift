@@ -16,6 +16,8 @@ struct StoreCodesListView: View {
     
     @ObservedObject private var regesterVM = CreateUserViewModel()
     
+    @State private var isDisabled = false
+    
     var body: some View {
         List {
             ForEach(Array(zip(storeCodeListVM.storeCodes, storeCodeListVM.enableVote)), id: \.0) { code, voteEnabled in
@@ -34,18 +36,20 @@ struct StoreCodesListView: View {
                             Button(action: {
                                 storeCodeListVM.updateCodeVotes(storeId: store.storeId, storeCodeId: code.storeCodeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "", upOrDown: .up)
                                 storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
+                                storeCodeListVM.isDisabled = true
                             }, label: {
                                 Image(systemName: "arrowtriangle.up.fill")
-                            }).disabled(voteEnabled)
+                            }).disabled(voteEnabled || storeCodeListVM.isDisabled)
                             
                             Spacer()
                             
                             Button(action: {
                                 storeCodeListVM.updateCodeVotes(storeId: store.storeId, storeCodeId: code.storeCodeId, userId:regesterVM.defaults.string(forKey: "userId") ?? "", upOrDown: .down)
                                 storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
+                                storeCodeListVM.isDisabled = true
                                                             }, label: {
                                 Image(systemName: "arrowtriangle.down.fill")
-                            }).disabled(voteEnabled)
+                            }).disabled(voteEnabled || storeCodeListVM.isDisabled)
                             
                         }
                         .buttonStyle(BorderlessButtonStyle())
@@ -80,7 +84,6 @@ struct StoreCodesListView: View {
             storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
             
         })
-        
     }
     
     struct StoreCodesListView_Previews: PreviewProvider {
@@ -88,4 +91,6 @@ struct StoreCodesListView: View {
             StoreCodesListView(store: StoreViewModel(store: Store(id: "", name: "", picture: "", codes: nil)))
         }
     }
+    
+    
 }

@@ -16,6 +16,8 @@ struct AddCodeView: View {
     
     @ObservedObject private var regesterVM = CreateUserViewModel()
     
+    
+    
     let store: StoreViewModel
     
     var body: some View {
@@ -40,6 +42,7 @@ struct AddCodeView: View {
                     
                     Text(addCodeVM.message)
                 }
+                .disabled(storeCodeVS.title.isEmpty || storeCodeVS.Description.isEmpty)
             }
         }
         .onChange(of: addCodeVM.saved) { value in
