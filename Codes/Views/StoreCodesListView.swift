@@ -84,8 +84,6 @@ struct StoreCodesListView: View {
                 )}, content: {
                     AddCodeView(store: store)
                 })
-        
-        .embedInNavigationView()
         .navigationBarItems(trailing: Button(action: {
             isPresented = true
         }, label: {
