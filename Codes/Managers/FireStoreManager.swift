@@ -23,7 +23,7 @@ class FirestoreManager {
             .document(storeId)
             .collection("codes")
             .document(storeCodeId)
-
+        
         switch upOrDown {
         case .up:
             codeRef.updateData(
@@ -32,14 +32,14 @@ class FirestoreManager {
                     "votedBy": FieldValue.arrayUnion([userId])
                 ])
             self.getStoreCodesBy(storeId: storeId) { result in
-                    switch result {
-                    case .success(let codes):
-                        if let codes = codes {
-                            completion(.success(codes))
-                        }
-                    case .failure(let error):
-                        completion(.failure(error))
+                switch result {
+                case .success(let codes):
+                    if let codes = codes {
+                        completion(.success(codes))
                     }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         case .down:
             codeRef.updateData(
@@ -48,55 +48,78 @@ class FirestoreManager {
                     "votedBy": FieldValue.arrayUnion([userId])
                 ])
         }
-    
+        
     }
     
-    func getStoreCodesBy(storeId: String, completion: @escaping (Result<[StoreCode]?, Error>) -> Void) {
+    func getStoreSpecialCodeBy(storeId: String, completion: @escaping (Result<[StoreCode]?, Error>) -> Void) {
         
         db.collection("stores")
             .document(storeId)
-            .collection("codes")
-            .order(by: "votes", descending: true)
+            .collection("specialCode")
+            .whereField("isEnabled", isEqualTo: true)
             .getDocuments { (snapshot, error) in
                 if let error = error {
                     completion(.failure(error))
                 } else {
                     if let snapshot = snapshot {
-                        let codes: [StoreCode]? = snapshot.documents.compactMap { doc in
+                        let storeSpecialCode: [StoreCode]? = snapshot.documents.compactMap { doc in
                             var storeCode = try? doc.data(as: StoreCode.self)
                             storeCode?.id = doc.documentID
                             return storeCode
                         }
-                        completion(.success(codes))
+                        completion(.success(storeSpecialCode))
                     }
                 }
             }
     }
-    
-    func getStoreById(storeId: String, completion: @escaping (Result<Store?, Error>) -> Void) {
+        func getStoreCodesBy(storeId: String, completion: @escaping (Result<[StoreCode]?, Error>) -> Void) {
+            
+            db.collection("stores")
+                .document(storeId)
+                .collection("codes")
+                .whereField("isEnabled", isEqualTo: true)
+                .whereField("votes", isGreaterThan: -2)
+                .order(by: "votes", descending: true)
+                .getDocuments { (snapshot, error) in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        if let snapshot = snapshot {
+                            let codes: [StoreCode]? = snapshot.documents.compactMap { doc in
+                                var storeCode = try? doc.data(as: StoreCode.self)
+                                storeCode?.id = doc.documentID
+                                return storeCode
+                            }
+                            completion(.success(codes))
+                        }
+                    }
+                }
+        }
         
-        let ref = db.collection("stores").document(storeId)
-        
-        ref.getDocument { (snapshot, error) in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                if let snapshot = snapshot {
-                    var store: Store? = try? snapshot.data(as: Store.self)
-                    if store != nil {
-                        store!.id = snapshot.documentID
-                        completion(.success(store))
+        func getStoreById(storeId: String, completion: @escaping (Result<Store?, Error>) -> Void) {
+            
+            let ref = db.collection("stores").document(storeId)
+            
+            ref.getDocument { (snapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    if let snapshot = snapshot {
+                        var store: Store? = try? snapshot.data(as: Store.self)
+                        if store != nil {
+                            store!.id = snapshot.documentID
+                            completion(.success(store))
+                        }
                     }
                 }
             }
         }
-    }
-    
-    func updateStore(storeId: String, storeCode: StoreCode, completion: @escaping (Result<Store?, Error>) -> Void) {
+        
+        func updateStore(storeId: String, storeCode: StoreCode, completion: @escaping (Result<Store?, Error>) -> Void) {
             do {
-    
+                
                 let _ = try db.collection("stores").document(storeId).collection("codes").addDocument(from: storeCode)
-    
+                
                 self.getStoreById(storeId: storeId) { result in
                     switch result {
                     case .success(let store):
@@ -105,34 +128,35 @@ class FirestoreManager {
                         completion(.failure(error))
                     }
                 }
-    
+                
             } catch let error {
                 completion(.failure(error))
             }
         }
-    
-
-    
-    func getAllStores(completion: @escaping (Result<[Store]?, Error>) -> Void) {
         
-        db.collection("stores").getDocuments { (snapshot, error) in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                if let snapshot = snapshot {
-                    let stores: [Store]? = snapshot.documents.compactMap { doc in
-                        var store = try? doc.data(as: Store.self)
-                        if store != nil {
-                            store!.id = doc.documentID
+        
+        
+        func getAllStores(completion: @escaping (Result<[Store]?, Error>) -> Void) {
+            
+            db.collection("stores").getDocuments { (snapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    if let snapshot = snapshot {
+                        let stores: [Store]? = snapshot.documents.compactMap { doc in
+                            var store = try? doc.data(as: Store.self)
+                            if store != nil {
+                                store!.id = doc.documentID
+                            }
+                            return store
                         }
-                        return store
+                        
+                        completion(.success(stores))
                     }
-                    
-                    completion(.success(stores))
                 }
             }
         }
-    }
+    
     
 //    func getStoreById(storeId: String, completion: @escaping (Result<Store?, Error>) -> Void) {
 //

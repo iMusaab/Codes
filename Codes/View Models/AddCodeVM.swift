@@ -12,6 +12,9 @@ struct StoreCodesViewState {
     var Description: String = ""
     var votes: Int = 0
     var votedBy: [String] = []
+    var isEnabled: Bool = false
+    var DateCreated: Date = Date()
+    var code: String = ""
 }
 
 

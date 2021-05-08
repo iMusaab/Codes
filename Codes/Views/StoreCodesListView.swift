@@ -20,6 +20,17 @@ struct StoreCodesListView: View {
     
     var body: some View {
         List {
+            
+            if storeCodeListVM.storeSpecialCode != [] {
+                ForEach(storeCodeListVM.storeSpecialCode, id: \.storeCodeId) { specialCode in
+                    VStack{
+                    Text(specialCode.title)
+                    Text(specialCode.Description)
+                    }
+                }
+            }
+            
+            
             ForEach(Array(zip(storeCodeListVM.storeCodes, storeCodeListVM.enableVote)), id: \.0) { code, voteEnabled in
                 HStack {
                     VStack{
@@ -82,6 +93,8 @@ struct StoreCodesListView: View {
         }))
         .onAppear(perform: {
             storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
+            
+            storeCodeListVM.getStoreSpecialCodeByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
             
         })
     }

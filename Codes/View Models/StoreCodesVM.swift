@@ -38,7 +38,7 @@ struct StoreCodeViewModel: Hashable {
     }
     
     var votedBy: [String] {
-        storeCode.votedBy ?? []
+        storeCode.votedBy
     }
 }
 
@@ -48,9 +48,11 @@ class StoreCodeListViewModel: ObservableObject {
     var storeCodeName: String = ""
     @Published var store: StoreViewModel?
     @Published var storeCodes: [StoreCodeViewModel] = []
+    @Published var storeSpecialCode: [StoreCodeViewModel] = []
     @Published var saved: Bool = false
     @Published var enableVote: [Bool] = []
     @Published var isDisabled : Bool = false
+    
     
     
     
@@ -70,6 +72,25 @@ class StoreCodeListViewModel: ObservableObject {
         }
     }
     
+    func getStoreSpecialCodeByStoreId(storeId: String, userId: String) {
+        firestoreManager.getStoreSpecialCodeBy(storeId: storeId) { result in
+            switch result {
+            case .success(let specialCode):
+                
+                
+                if let specialCode = specialCode {
+                    DispatchQueue.main.async {
+                        self.storeSpecialCode = specialCode.map(StoreCodeViewModel.init)
+                        print("Success in storeCodeVM file in getStoreSpecialCodesByStoreId", self.storeSpecialCode)
+                        
+                    }
+                }
+            case .failure(let error):
+                print("Error in storeCodeVM file in getStoreSpecialCodesByStoreId: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     
     func getStoreCodesByStoreId(storeId: String, userId: String) {
         var enableVote: [Bool] = []
@@ -80,14 +101,11 @@ class StoreCodeListViewModel: ObservableObject {
                 
                 if let codes = codes {
                     for code in codes {
-                        if let votedBy = code.votedBy {
-                            if votedBy.contains(userId) {
+                            if code.votedBy.contains(userId) {
                                 enableVote.append(true)
                             } else {
                                 enableVote.append(false)
                             }
-                            
-                        }
                     }
                     DispatchQueue.main.async {
                         self.storeCodes = codes.map(StoreCodeViewModel.init)

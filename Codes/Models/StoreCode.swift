@@ -11,8 +11,11 @@ struct StoreCode: Codable {
     var id: String?
     var title: String = ""
     var Description: String = ""
+    var code: String = ""
     var votes: Int = 0
-    var votedBy: [String]?
+    var votedBy: [String] = []
+    var isEnabled: Bool = false
+    var DateCreated: Date = Date()
     
 }
 
