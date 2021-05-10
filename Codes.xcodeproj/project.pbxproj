@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,7 +24,7 @@
 		D6B6CE1A263C2E27006EAF64 /* AddCodeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE19263C2E27006EAF64 /* AddCodeVM.swift */; };
 		D6B6CE2026405BC6006EAF64 /* CreateUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE1F26405BC6006EAF64 /* CreateUserVM.swift */; };
 		D6B6CE2326407999006EAF64 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE2226407999006EAF64 /* User.swift */; };
-		D6B6CE43264724D1006EAF64 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = D6B6CE42264724D1006EAF64 /* SwiftUIX */; };
+		D6B6CE4C26484A0F006EAF64 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE4B26484A0F006EAF64 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +49,7 @@
 		D6B6CE19263C2E27006EAF64 /* AddCodeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCodeVM.swift; sourceTree = "<group>"; };
 		D6B6CE1F26405BC6006EAF64 /* CreateUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserVM.swift; sourceTree = "<group>"; };
 		D6B6CE2226407999006EAF64 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D6B6CE4B26484A0F006EAF64 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +58,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C673D28D5020E219031A0F81 /* Pods_Codes.framework in Frameworks */,
-				D6B6CE43264724D1006EAF64 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +167,7 @@
 			children = (
 				D6B6CE10263C2286006EAF64 /* StoreCodesListView.swift */,
 				D6B6CE16263C2DE3006EAF64 /* AddCodeView.swift */,
+				D6B6CE4B26484A0F006EAF64 /* MainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -190,7 +191,6 @@
 			);
 			name = Codes;
 			packageProductDependencies = (
-				D6B6CE42264724D1006EAF64 /* SwiftUIX */,
 			);
 			productName = Codes;
 			productReference = D6A977782639D552003422B3 /* Codes.app */;
@@ -220,7 +220,6 @@
 			);
 			mainGroup = D6A9776F2639D552003422B3;
 			packageReferences = (
-				D6B6CE41264724D0006EAF64 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = D6A977792639D552003422B3 /* Products */;
 			projectDirPath = "";
@@ -292,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6B6CE2326407999006EAF64 /* User.swift in Sources */,
+				D6B6CE4C26484A0F006EAF64 /* MainView.swift in Sources */,
 				D6A978492639DDE6003422B3 /* Store.swift in Sources */,
 				D6B6CE1A263C2E27006EAF64 /* AddCodeVM.swift in Sources */,
 				D6A9777E2639D552003422B3 /* ContentView.swift in Sources */,
@@ -348,6 +348,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -362,7 +363,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -410,6 +411,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -418,7 +420,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -498,25 +500,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		D6B6CE41264724D0006EAF64 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.6;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		D6B6CE42264724D1006EAF64 /* SwiftUIX */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D6B6CE41264724D0006EAF64 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
-			productName = SwiftUIX;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D6A977702639D552003422B3 /* Project object */;
 }
