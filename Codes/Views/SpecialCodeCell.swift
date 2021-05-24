@@ -63,19 +63,13 @@ struct SpecialStoreCell: View {
                         }
                     }, label: {
                         HStack {
-                            Image(systemName: specialCode.code.isEmpty ? "arrow.up.forward.app.fill" : "doc.on.doc.fill")
+                            Image(systemName: specialCode.code.isEmpty ? "arrow.up.backward.circle.fill" : "doc.on.doc.fill")
                                 .foregroundColor(Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)))
                                 .font(.system(size: specialCode.code.isEmpty ? 16 : 12))
-                                .padding(.leading, 4)
-                            
-                            Spacer()
                             
                             Text(specialCode.code.isEmpty ? "اذهب" : specialCode.code)
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundColor(.black)
-//                                .padding(.trailing, specialCode.code.isEmpty)
-                            
-                            Spacer()
                         }
                                 .padding(.vertical, 8)
                                 .padding(.horizontal, 5)
@@ -108,6 +102,6 @@ struct SwiftUIView_Previews: PreviewProvider {
     @State static var showHUD = false
     
     static var previews: some View {
-        SpecialStoreCell(specialCode: StoreCodeViewModel(storeCode: StoreCode(id: "", title: "خصم ١٠٪", Description: "هقتح قثختلحثقخل خحتثقلحختلقحخلقث لقخحتلقثحخقتلثلق ثحختحخلثقت لقلقحخثتلقث قلثخحتلقثح لق", code: "thtrhr", url: "", votes: 2, votedBy: [], isEnabled: true, DateCreated: Date())), showHUD: $showHUD).environment(\.layoutDirection, .rightToLeft)
+        SpecialStoreCell(specialCode: StoreCodeViewModel(storeCode: StoreCode(id: "", title: "خصم ١٠٪", Description: "هقتح قثختلحثقخل خحتثقلحختلقحخلقث لقخحتلقثحخقتلثلق ثحختحخلثقت لقلقحخثتلقث قلثخحتلقثح لق", code: "", url: "", votes: 2, votedBy: [], isEnabled: true, DateCreated: Date())), showHUD: $showHUD).environment(\.layoutDirection, .rightToLeft)
     }
 }
