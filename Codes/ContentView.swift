@@ -8,34 +8,35 @@
 import SwiftUI
 
 
-extension List {
-    @ViewBuilder func noSeparators() -> some View {
-        #if swift(>=5.3) // Xcode 12
-        if #available(iOS 14.0, *) { // iOS 14
-            self
-            .accentColor(Color.secondary)
-            .listStyle(PlainListStyle())
-            .onAppear {
-                UITableView.appearance().backgroundColor = UIColor.systemBackground
-            }
-        } else { // iOS 13
-            self
-                        .listStyle(PlainListStyle())
-            .onAppear {
-                UITableView.appearance().separatorStyle = .none
-            }
-        }
-        #else // Xcode 11.5
-        self
-                .listStyle(PlainListStyle())
-        .onAppear {
-            UITableView.appearance().separatorStyle = .none
-        }
-        #endif
-    }
-}
+//extension List {
+//    @ViewBuilder func noSeparators() -> some View {
+//        #if swift(>=5.3) // Xcode 12
+//        if #available(iOS 14.0, *) { // iOS 14
+//            self
+//            .accentColor(Color.secondary)
+//            .listStyle(PlainListStyle())
+//            .onAppear {
+//                UITableView.appearance().backgroundColor = UIColor.systemBackground
+//            }
+//        } else { // iOS 13
+//            self
+//                        .listStyle(PlainListStyle())
+//            .onAppear {
+//                UITableView.appearance().separatorStyle = .none
+//            }
+//        }
+//        #else // Xcode 11.5
+//        self
+//                .listStyle(PlainListStyle())
+//        .onAppear {
+//            UITableView.appearance().separatorStyle = .none
+//        }
+//        #endif
+//    }
+//}
 
 struct ContentView: View {
+    
     
     @ObservedObject private var storeListVM = StoreListViewMode()
     
@@ -46,64 +47,88 @@ struct ContentView: View {
     
     @State var selection: String? = nil
     
-    
+    init() {
+
+        UINavigationBar.appearance().barTintColor = .clear
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+//        UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().shadowImage = UIImage()
+
+         }
     var body: some View {
         
-        VStack {
-            SearchBar(searchText: $searchText, isSearching: $isSearching)
-
-            List(storeListVM.stores.filter({
-                "\($0)".contains(searchText) || searchText.isEmpty
-            }), id: \.storeId) { store in
-                NavigationLink(
-                    destination: StoreCodesListView(store: store), tag: store.storeId, selection: $selection) {
-                    StoreCell(store: store)
+        
+        
+        ZStack {
+            VStack {
+                SearchBar(searchText: $searchText, isSearching: $isSearching)
+                Spacer(minLength: 20)
+                
+                GeometryReader { outerGeometry in
+                    ScrollView {
+                        LazyVStack(alignment: .leading) {
+                            ForEach(storeListVM.stores.filter({
+                                "\($0)".contains(searchText) || searchText.isEmpty
+                            }), id: \.storeId) { store in
+                                NavigationLink(
+                                    destination: StoreCodesListView(store: store), tag: store.storeId, selection: $selection) {
+                                    
+                                    
+                                    GeometryReader { innerGeometry in
+                                        HStack {
+                                            Image(store.picture)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 60, height: 60)
+                                                .clipShape(Circle())
+                                                .padding(.horizontal, 5)
+                                            Text(store.name)
+                                                .font(.headline)
+                                        }
+                                        .padding(.leading, 7)
+                                        .padding(.top, 10)
+                                    }
+                                    .frame(width: outerGeometry.size.width - 30, height: 80)
+                                    .background((selection == store.storeId) ? LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5), Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading) :
+                                        LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.8), Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading)
+                                    )
+                                    .cornerRadius(30)
+                                    .padding(.leading, 15)
+                                    
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                                .padding(.vertical, 5)
+//                                .background((selection != nil) ? Color.red : Color.clear)
+                                
+                            }
+                        }
+                    }
+                    .animation(.default)
+                    .navigationBarTitleDisplayMode(.large)
+                    .navigationBarTitle("المتاجر")
                 }
-                .onDisappear {
-                    self.selection = nil
-                }
+//                .navigationBarHidden(isSearching)
                 
             }
-            .noSeparators()
-            .navigationBarTitleDisplayMode(.large)
-            .navigationBarTitle("المتاجر")
-        }
-        
-        .embedInNavigationView()
-        
-        
-        .onAppear {
-            storeListVM.getAll()
-            regesterVM.CreateUser {_ in
-                print("User created")
-                
-            }
-        }
-    }
-}
-
-struct StoreCell: View {
-    
-    let store: StoreViewModel
-    
-    var body: some View {
-        HStack {
-            Image(store.picture)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 65, height: 65)
-                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                .padding(5)
-            VStack(alignment: .leading, spacing: nil) {
-                Text(store.name)
-                    .font(.body).bold()
-                    .padding(1)
-                Text("عدد الاكواد")
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
-            }
+            .background(
+                VStack {
+                    LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 1)), Color.white]), startPoint: .top, endPoint: .bottom)
+                        .frame(height: 300)
+                        .ignoresSafeArea(.all)
+                    Spacer()
+                        
+                })
+            .embedInNavigationView()
+            .accentColor(Color(#colorLiteral(red: 0.09803921569, green: 0.09803921569, blue: 0.09803921569, alpha: 1)))
             
-            
+            .onAppear {
+                storeListVM.getAll()
+                regesterVM.CreateUser {_ in
+                    print("User created")
+                    
+                }
+        }
         }
     }
 }
@@ -122,56 +147,58 @@ struct SearchBar: View {
     @Binding var isSearching: Bool
     
     var body: some View {
-        HStack {
+        
             HStack {
-                TextField("بحث...", text: $searchText)
-                    .padding(isSearching ? 10 : 7)
-                    .padding(.horizontal, 25)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                    .padding(.horizontal, 10)
-            }
-            
-            .onTapGesture {
-                isSearching = true
-            }
-            .overlay(
                 HStack {
-                    Image(systemName: "magnifyingglass")
-                        .rotationEffect(.degrees(-90))
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                        .padding(.leading, 16)
-                    
-                    if isSearching {
-                        Button(action: {
-                            searchText = ""
-                        }, label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .padding(.trailing, 16)
-                                .padding(.vertical)
-                        })
-                        
-                        
-                    }
+                    TextField("بحث...", text: $searchText)
+                        .padding(isSearching ? 8 : 7)
+                        .padding(.horizontal, 20)
+                        .background(Color(.white))
+                        .cornerRadius(20)
+                        .padding(.horizontal, 15)
+                        .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.06), radius: 10, x: 0, y: 20)
                 }
-                .foregroundColor(.gray)
-            ).transition(.move(edge: .trailing))
-            .animation(.default)
-            
-            if isSearching {
-                Button(action: {
-                    isSearching = false
-                    searchText = ""
-                    
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                }, label: {
-                    Text("إلغاء")
-                        .padding(.trailing)
-                        .padding(.leading, -5)
-                })
-                .transition(.move(edge: .trailing))
+                
+                .onTapGesture {
+                    isSearching = true
+                }
+                .overlay(
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 20)
+                        
+                        if isSearching {
+                            Button(action: {
+                                searchText = ""
+                            }, label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .padding(.trailing, 20)
+                                    .padding(.vertical)
+                            })
+                            
+                            
+                        }
+                    }
+                    .foregroundColor(.gray)
+                ).transition(.move(edge: .trailing))
                 .animation(.default)
+                
+                if isSearching {
+                    Button(action: {
+                        isSearching = false
+                        searchText = ""
+                        
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    }, label: {
+                        Text("إلغاء")
+                            .padding(.trailing)
+                            .padding(.leading, -4)
+                    })
+                    .transition(.move(edge: .trailing))
+                    .animation(.default)
+                }
             }
         }
     }
-}
+

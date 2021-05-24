@@ -40,6 +40,14 @@ struct StoreCodeViewModel: Hashable {
     var votedBy: [String] {
         storeCode.votedBy
     }
+    
+    var code: String {
+        storeCode.code
+    }
+    
+    var url: String {
+        storeCode.url
+    }
 }
 
 class StoreCodeListViewModel: ObservableObject {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C673D28D5020E219031A0F81 /* Pods_Codes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19CCD0F6D8306197C9F8D406 /* Pods_Codes.framework */; };
+		D64B93672655D13F00CF85B9 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64B93662655D13F00CF85B9 /* AddButton.swift */; };
 		D6A9777C2639D552003422B3 /* CodesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9777B2639D552003422B3 /* CodesApp.swift */; };
 		D6A9777E2639D552003422B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9777D2639D552003422B3 /* ContentView.swift */; };
 		D6A977802639D553003422B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6A9777F2639D553003422B3 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 		D6A9784E2639DEB2003422B3 /* FireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9784D2639DEB2003422B3 /* FireStoreManager.swift */; };
 		D6A978572639E953003422B3 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A978562639E953003422B3 /* View+Extensions.swift */; };
 		D6A9785C2639EB93003422B3 /* StoreListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9785B2639EB93003422B3 /* StoreListVM.swift */; };
+		D6AAA99226534DCD0097D571 /* TestCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AAA99126534DCD0097D571 /* TestCells.swift */; };
 		D6B6CE0B263C1A34006EAF64 /* StoreCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE0A263C1A34006EAF64 /* StoreCode.swift */; };
 		D6B6CE0E263C1B43006EAF64 /* StoreCodesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE0D263C1B43006EAF64 /* StoreCodesVM.swift */; };
 		D6B6CE11263C2286006EAF64 /* StoreCodesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE10263C2286006EAF64 /* StoreCodesListView.swift */; };
@@ -25,12 +27,17 @@
 		D6B6CE2026405BC6006EAF64 /* CreateUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE1F26405BC6006EAF64 /* CreateUserVM.swift */; };
 		D6B6CE2326407999006EAF64 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE2226407999006EAF64 /* User.swift */; };
 		D6B6CE4C26484A0F006EAF64 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6CE4B26484A0F006EAF64 /* MainView.swift */; };
+		D6B7E4DA265BF1F6006CBD55 /* SpecialCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B7E4D9265BF1F6006CBD55 /* SpecialCodeCell.swift */; };
+		D6B9E3D3265216F000C0E764 /* CodesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B9E3D2265216F000C0E764 /* CodesView.swift */; };
+		D6B9E3D6265229B000C0E764 /* CopyHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B9E3D5265229B000C0E764 /* CopyHUD.swift */; };
+		D6B9E3D926532D8F00C0E764 /* CodeWithVotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B9E3D826532D8E00C0E764 /* CodeWithVotesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		036CBD7650CDF48018B80EE1 /* Pods-Codes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codes.debug.xcconfig"; path = "Target Support Files/Pods-Codes/Pods-Codes.debug.xcconfig"; sourceTree = "<group>"; };
 		19CCD0F6D8306197C9F8D406 /* Pods_Codes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3340A5CB7BAC0C72E1F43ABD /* Pods-Codes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codes.release.xcconfig"; path = "Target Support Files/Pods-Codes/Pods-Codes.release.xcconfig"; sourceTree = "<group>"; };
+		D64B93662655D13F00CF85B9 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		D6A977782639D552003422B3 /* Codes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Codes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A9777B2639D552003422B3 /* CodesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesApp.swift; sourceTree = "<group>"; };
 		D6A9777D2639D552003422B3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,6 +49,7 @@
 		D6A9784D2639DEB2003422B3 /* FireStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreManager.swift; sourceTree = "<group>"; };
 		D6A978562639E953003422B3 /* View+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		D6A9785B2639EB93003422B3 /* StoreListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListVM.swift; sourceTree = "<group>"; };
+		D6AAA99126534DCD0097D571 /* TestCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCells.swift; sourceTree = "<group>"; };
 		D6B6CE0A263C1A34006EAF64 /* StoreCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCode.swift; sourceTree = "<group>"; };
 		D6B6CE0D263C1B43006EAF64 /* StoreCodesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCodesVM.swift; sourceTree = "<group>"; };
 		D6B6CE10263C2286006EAF64 /* StoreCodesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCodesListView.swift; sourceTree = "<group>"; };
@@ -50,6 +58,10 @@
 		D6B6CE1F26405BC6006EAF64 /* CreateUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserVM.swift; sourceTree = "<group>"; };
 		D6B6CE2226407999006EAF64 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D6B6CE4B26484A0F006EAF64 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		D6B7E4D9265BF1F6006CBD55 /* SpecialCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialCodeCell.swift; sourceTree = "<group>"; };
+		D6B9E3D2265216F000C0E764 /* CodesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesView.swift; sourceTree = "<group>"; };
+		D6B9E3D5265229B000C0E764 /* CopyHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyHUD.swift; sourceTree = "<group>"; };
+		D6B9E3D826532D8E00C0E764 /* CodeWithVotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeWithVotesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,8 +178,14 @@
 			isa = PBXGroup;
 			children = (
 				D6B6CE10263C2286006EAF64 /* StoreCodesListView.swift */,
+				D6B7E4D9265BF1F6006CBD55 /* SpecialCodeCell.swift */,
 				D6B6CE16263C2DE3006EAF64 /* AddCodeView.swift */,
 				D6B6CE4B26484A0F006EAF64 /* MainView.swift */,
+				D6B9E3D2265216F000C0E764 /* CodesView.swift */,
+				D6B9E3D5265229B000C0E764 /* CopyHUD.swift */,
+				D6B9E3D826532D8E00C0E764 /* CodeWithVotesView.swift */,
+				D6AAA99126534DCD0097D571 /* TestCells.swift */,
+				D64B93662655D13F00CF85B9 /* AddButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,16 +312,22 @@
 				D6B6CE4C26484A0F006EAF64 /* MainView.swift in Sources */,
 				D6A978492639DDE6003422B3 /* Store.swift in Sources */,
 				D6B6CE1A263C2E27006EAF64 /* AddCodeVM.swift in Sources */,
+				D6B9E3D6265229B000C0E764 /* CopyHUD.swift in Sources */,
 				D6A9777E2639D552003422B3 /* ContentView.swift in Sources */,
 				D6A9785C2639EB93003422B3 /* StoreListVM.swift in Sources */,
+				D6AAA99226534DCD0097D571 /* TestCells.swift in Sources */,
 				D6B6CE0E263C1B43006EAF64 /* StoreCodesVM.swift in Sources */,
 				D6A9777C2639D552003422B3 /* CodesApp.swift in Sources */,
+				D6B9E3D3265216F000C0E764 /* CodesView.swift in Sources */,
 				D6B6CE0B263C1A34006EAF64 /* StoreCode.swift in Sources */,
 				D6A978572639E953003422B3 /* View+Extensions.swift in Sources */,
+				D6B9E3D926532D8F00C0E764 /* CodeWithVotesView.swift in Sources */,
+				D6B7E4DA265BF1F6006CBD55 /* SpecialCodeCell.swift in Sources */,
 				D6B6CE17263C2DE3006EAF64 /* AddCodeView.swift in Sources */,
 				D6B6CE11263C2286006EAF64 /* StoreCodesListView.swift in Sources */,
 				D6A9784E2639DEB2003422B3 /* FireStoreManager.swift in Sources */,
 				D6B6CE2026405BC6006EAF64 /* CreateUserVM.swift in Sources */,
+				D64B93672655D13F00CF85B9 /* AddButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

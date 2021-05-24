@@ -12,6 +12,7 @@ struct StoreCode: Codable {
     var title: String = ""
     var Description: String = ""
     var code: String = ""
+    var url: String = ""
     var votes: Int = 0
     var votedBy: [String] = []
     var isEnabled: Bool = false
@@ -22,7 +23,7 @@ struct StoreCode: Codable {
 extension StoreCode {
     
     static func from(_ storeCodeVS: StoreCodesViewState) -> StoreCode {
-        return StoreCode(title: storeCodeVS.title, Description: storeCodeVS.Description)
+        return StoreCode(title: storeCodeVS.title, Description: storeCodeVS.Description, code: storeCodeVS.code)
     }
 }
 
