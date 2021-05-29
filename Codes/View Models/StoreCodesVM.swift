@@ -57,7 +57,7 @@ class StoreCodeListViewModel: ObservableObject {
     @Published var store: StoreViewModel?
     @Published var storeCodes: [StoreCodeViewModel] = []
     @Published var storeSpecialCode: [StoreCodeViewModel] = []
-    @Published var saved: Bool = false
+    @Published var voteSaved: Bool = false
     @Published var enableVote: [Bool] = []
     @Published var isDisabled : Bool = false
     
@@ -71,7 +71,8 @@ class StoreCodeListViewModel: ObservableObject {
         firestoreManager.updateCodeVotes(storeId: storeId, storeCodeId: storeCodeId, userId: userId, upOrDown: upOrDown) { result in
             switch result {
             case .success(_):
-                self.saved = true
+                self.voteSaved = true
+                print("votes saved: \(self.isDisabled)")
                 
             case .failure(let error):
                 print(error.localizedDescription)
@@ -119,6 +120,7 @@ class StoreCodeListViewModel: ObservableObject {
                         self.storeCodes = codes.map(StoreCodeViewModel.init)
                         self.enableVote = enableVote
                         self.isDisabled = false
+                        print("Got storeCodeVM file in getStoreCodesByStoreId")
                     }
                 }
             case .failure(let error):

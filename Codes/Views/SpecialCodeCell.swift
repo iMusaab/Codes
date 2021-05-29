@@ -63,9 +63,9 @@ struct SpecialStoreCell: View {
                         }
                     }, label: {
                         HStack {
-                            Image(systemName: specialCode.code.isEmpty ? "arrow.up.backward.circle.fill" : "doc.on.doc.fill")
+                            Image(systemName: specialCode.code.isEmpty ? "arrow.up.backward" : "doc.on.doc")
                                 .foregroundColor(Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)))
-                                .font(.system(size: specialCode.code.isEmpty ? 16 : 12))
+                                .font(.system(size: specialCode.code.isEmpty ? 14 : 12))
                             
                             Text(specialCode.code.isEmpty ? "اذهب" : specialCode.code)
                                 .font(.system(size: 18, weight: .bold))

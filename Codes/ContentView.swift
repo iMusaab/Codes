@@ -47,15 +47,15 @@ struct ContentView: View {
     
     @State var selection: String? = nil
     
-    init() {
-
-        UINavigationBar.appearance().barTintColor = .clear
-//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//        UINavigationBar.appearance().isTranslucent = true
-        UINavigationBar.appearance().shadowImage = UIImage()
-
-         }
+//    init() {
+//
+//        UINavigationBar.appearance().barTintColor = .clear
+////        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+////        UINavigationBar.appearance().isTranslucent = true
+//        UINavigationBar.appearance().shadowImage = UIImage()
+//
+//         }
     var body: some View {
         
         
@@ -63,7 +63,8 @@ struct ContentView: View {
         ZStack {
             VStack {
                 SearchBar(searchText: $searchText, isSearching: $isSearching)
-                Spacer(minLength: 20)
+                
+                
                 
                 GeometryReader { outerGeometry in
                     ScrollView {
@@ -119,7 +120,7 @@ struct ContentView: View {
                     Spacer()
                         
                 })
-            .embedInNavigationView()
+//            .embedInNavigationView()
             .accentColor(Color(#colorLiteral(red: 0.09803921569, green: 0.09803921569, blue: 0.09803921569, alpha: 1)))
             
             .onAppear {
@@ -156,7 +157,7 @@ struct SearchBar: View {
                         .background(Color(.white))
                         .cornerRadius(20)
                         .padding(.horizontal, 15)
-                        .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.06), radius: 10, x: 0, y: 20)
+                        .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.06), radius: 5, x: 0, y: 4)
                 }
                 
                 .onTapGesture {

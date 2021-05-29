@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct AddCodeView: View {
     @Environment(\.presentationMode) var presentaionMode
@@ -15,7 +16,10 @@ struct AddCodeView: View {
     
     @State private var storeCodeVS = StoreCodesViewState()
     
+    
     @ObservedObject private var regesterVM = CreateUserViewModel()
+    
+    
     
     private var addButtonDisabled: Bool {
         return storeCodeVS.title.isEmpty || storeCodeVS.Description.isEmpty || storeCodeVS.code.isEmpty || storeCodeVS.title.count > 12 || storeCodeVS.Description.count > 50 || storeCodeVS.code.count > 6
@@ -34,8 +38,8 @@ struct AddCodeView: View {
         
         GeometryReader { geometry in
             
-            VStack(spacing: 100) {
-                VStack(spacing: 34) {
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading , spacing: 34) {
                     VStack(alignment: .leading) {
                         Text("العنوان").font(.headline).foregroundColor(Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)))
                         
@@ -78,11 +82,10 @@ struct AddCodeView: View {
                         Text("بحد اقصى ٦ أحرف")
                             .font(.caption)
                             .foregroundColor(storeCodeVS.code.count >= 6 ? Color.red : .secondary)
-                        
                     }
+                    
                         
-                }
-                
+                } .padding(.top, 60)
                 Button(action: {
                     
                     addCodeVM.addCodeToStore(storeId: store.storeId, storeCodeVS: storeCodeVS) { error in
@@ -104,6 +107,7 @@ struct AddCodeView: View {
                             .shadow(color:addButtonDisabled ? Color(.clear) : Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.25), radius: 10, x: 0, y: 5)
                     }
                 })
+                .padding(.top, 60)
                 .disabled(addButtonDisabled)
             }
                     .onChange(of: addCodeVM.saved) { value in
@@ -117,7 +121,8 @@ struct AddCodeView: View {
                         Image(systemName: "xmark")
                             .foregroundColor(Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)))
                     }))
-                    .navigationBarTitle("أضف كود خصم")
+                    .navigationBarTitle("أضف كود خصم", displayMode: .inline)
+            
                     .embedInNavigationView()
                 .environment(\.layoutDirection, .rightToLeft)
             

@@ -19,13 +19,13 @@ struct StoreCodesListView: View {
     
     @ObservedObject private var regesterVM = CreateUserViewModel()
     
-    @State private var isDisabled = false
+//    @StateObject private var isDisabled = false
     
     @State private var showHUD = false
     
     let pasteboard = UIPasteboard.general
     
-
+    
     
     
     var body: some View {
@@ -42,7 +42,6 @@ struct StoreCodesListView: View {
                             
                             ForEach(storeCodeListVM.storeSpecialCode, id: \.storeCodeId) { specialCode in
                                 SpecialStoreCell(specialCode: specialCode, showHUD: $showHUD)
-                              
                             }
                             .padding(.top, 20)
                         }
@@ -50,14 +49,13 @@ struct StoreCodesListView: View {
                         
                         ForEach(Array(zip(storeCodeListVM.storeCodes, storeCodeListVM.enableVote)), id: \.0) { code, voteEnabled in
                            
-                            normalCodeCell(voteEnabled: voteEnabled, isDisabled: $storeCodeListVM.isDisabled, code: code, showHUD: $showHUD, store: store)
+                            normalCodeCell(voteEnabled: voteEnabled, code: code, showHUD: $showHUD, storeCodeListVM: storeCodeListVM, store: store)
                         }
-                        .onChange(of: storeCodeListVM.saved, perform: { value in
+                        
+                        .onChange(of: storeCodeListVM.voteSaved, perform: { value in
                             if value {
                                 storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
-                                
                             }
-                            
                         })
                         
                     } 
@@ -74,6 +72,7 @@ struct StoreCodesListView: View {
                         AddButton()
                     }))
                     .onAppear(perform: {
+                        UITabBar.appearance().tintColor = .black
                         
                         storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
                         
@@ -97,7 +96,7 @@ struct StoreCodesListView: View {
     
     struct StoreCodesListView_Previews: PreviewProvider {
         static var previews: some View {
-            StoreCodesListView(store: StoreViewModel(store: Store(id: "hrth", name: "thr", picture: "trh", codes: ["gter", "gerg"])))
+            StoreCodesListView(store: StoreViewModel(store: Store(id: "", name: "thr", picture: "hungerPic", codes: nil)))
         }
     }
     

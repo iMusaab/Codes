@@ -9,17 +9,22 @@ import SwiftUI
 
 struct normalCodeCell: View {
     var voteEnabled: Bool
-    @Binding var isDisabled: Bool
+//    @Binding var isDisabled: Bool
     var code: StoreCodeViewModel
     @Binding var showHUD: Bool
     let pasteboard = UIPasteboard.general
     
-    @StateObject private var storeCodeListVM = StoreCodeListViewModel()
+    @StateObject var storeCodeListVM: StoreCodeListViewModel
+    
     var store: StoreViewModel
     
     @ObservedObject private var regesterVM = CreateUserViewModel()
 
     @Environment(\.openURL) var openURL
+    
+    func updateVoteStatus() {
+        
+    }
     
     func dismissHUDAfterTime() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -33,8 +38,10 @@ struct normalCodeCell: View {
                 HStack {
                     VStack {
                         Button(action: {
+                            
                             storeCodeListVM.updateCodeVotes(storeId: store.storeId, storeCodeId: code.storeCodeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "", upOrDown: .up)
                             storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
+                            
                             storeCodeListVM.isDisabled = true
                         }, label: {
                             Image(systemName: "chevron.up")
@@ -42,7 +49,7 @@ struct normalCodeCell: View {
                                 .foregroundColor(voteEnabled ? Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)).opacity(0.35) : Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)))
                                 .frame(width: 30, height: 30, alignment: .center)
                         })
-                        .disabled(voteEnabled || isDisabled)
+                        .disabled(voteEnabled || storeCodeListVM.isDisabled)
                         .buttonStyle(BorderlessButtonStyle())
                         
                         Text("\(code.votes)")
@@ -61,7 +68,7 @@ struct normalCodeCell: View {
                                 .frame(width: 30, height: 30, alignment: .center)
                             
                         })
-                        .disabled(voteEnabled || isDisabled)
+                        .disabled(voteEnabled || storeCodeListVM.isDisabled)
                         .buttonStyle(BorderlessButtonStyle())
                         
                     }
@@ -80,7 +87,7 @@ struct normalCodeCell: View {
                             
                             Text(code.Description)
                                 .font(.system(size: 16, weight: .regular))
-                                .frame(width: geometry.size.width - 80, alignment: .leading)
+                                .frame(width: abs(geometry.size.width - 80), alignment: .leading)
                             
                         }
                         
@@ -104,9 +111,9 @@ struct normalCodeCell: View {
                                 
                             }, label: {
                                 HStack {
-                                    Image(systemName: code.code.isEmpty ? "arrow.up.backward.circle.fill" : "doc.on.doc.fill")
+                                    Image(systemName: code.code.isEmpty ? "arrow.up.backward" : "doc.on.doc")
                                         .foregroundColor(Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)))
-                                        .font(.system(size: code.code.isEmpty ? 16 : 12))
+                                        .font(.system(size: code.code.isEmpty ? 14 : 12))
                                     Text(code.code.isEmpty ? "اذهب" : code.code)
                                         .font(.system(size: 18, weight: .bold))
                                         .foregroundColor(.black)
@@ -129,7 +136,7 @@ struct normalCodeCell: View {
             }
             //                                .padding(.vertical, 20)
             //                                .padding(.horizontal, 30)
-            .frame(width: geometry.size.width - 30, height: 180)
+            .frame(width: abs(geometry.size.width - 30), height: 180)
             //                .padding(.leading)
             .background(Color(#colorLiteral(red: 0.8078431373, green: 0.8156862745, blue: 0.8078431373, alpha: 1)))
             .cornerRadius(35)
@@ -138,8 +145,10 @@ struct normalCodeCell: View {
             .padding(.leading, 15)
             
         }
+        
         .frame(height: 200, alignment: .center)
     }
+    
 }
 
 
@@ -148,6 +157,6 @@ struct normalCodeCell_Previews: PreviewProvider {
     @State static var showHUD = false
     
     static var previews: some View {
-        normalCodeCell(voteEnabled: true, isDisabled: $isDisabled , code: StoreCodeViewModel(storeCode: StoreCode(id: "", title: "خصم ١٠٪", Description: "هقتح قثختلحثقخل خحتثقلحختلقحخلقث لقخحتلقثحخقتلثلق ثحختحخلثقت لقلقحخثتلقث قلثخحتلقثح لق", code: "", url: "", votes: 2, votedBy: [], isEnabled: true, DateCreated: Date())), showHUD: $showHUD, store: StoreViewModel(store: Store(id: "", name: "HungerStation", picture: "HungerPic", codes: nil))).environment(\.layoutDirection, .rightToLeft)
+        normalCodeCell(voteEnabled: true , code: StoreCodeViewModel(storeCode: StoreCode(id: "", title: "خصم ١٠٪", Description: "هقتح قثختلحثقخل خحتثقلحختلقحخلقث لقخحتلقثحخقتلثلق ثحختحخلثقت لقلقحخثتلقث قلثخحتلقثح لق", code: "", url: "", votes: 2, votedBy: [], isEnabled: true, DateCreated: Date())), showHUD: $showHUD, storeCodeListVM: StoreCodeListViewModel(), store: StoreViewModel(store: Store(id: "", name: "HungerStation", picture: "HungerPic", codes: nil))).environment(\.layoutDirection, .rightToLeft)
     }
 }
