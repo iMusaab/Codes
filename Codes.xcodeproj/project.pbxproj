@@ -9,9 +9,8 @@
 /* Begin PBXBuildFile section */
 		C673D28D5020E219031A0F81 /* Pods_Codes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19CCD0F6D8306197C9F8D406 /* Pods_Codes.framework */; };
 		D61AE6E326623B3E0080AA5C /* CategoriesScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61AE6E226623B3E0080AA5C /* CategoriesScrollView.swift */; };
+		D61AE6E626628A0C0080AA5C /* CatigoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61AE6E526628A0C0080AA5C /* CatigoriesView.swift */; };
 		D64B93672655D13F00CF85B9 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64B93662655D13F00CF85B9 /* AddButton.swift */; };
-		D6845FA02660D756001F4D7B /* KeyboardGuardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6845F9F2660D756001F4D7B /* KeyboardGuardian.swift */; };
-		D6845FA32660D847001F4D7B /* geometryGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6845FA22660D847001F4D7B /* geometryGetter.swift */; };
 		D68B5D0E265C9F1000EE5159 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68B5D0D265C9F1000EE5159 /* SettingsView.swift */; };
 		D6A9777C2639D552003422B3 /* CodesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9777B2639D552003422B3 /* CodesApp.swift */; };
 		D6A9777E2639D552003422B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9777D2639D552003422B3 /* ContentView.swift */; };
@@ -43,9 +42,8 @@
 		19CCD0F6D8306197C9F8D406 /* Pods_Codes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3340A5CB7BAC0C72E1F43ABD /* Pods-Codes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codes.release.xcconfig"; path = "Target Support Files/Pods-Codes/Pods-Codes.release.xcconfig"; sourceTree = "<group>"; };
 		D61AE6E226623B3E0080AA5C /* CategoriesScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesScrollView.swift; sourceTree = "<group>"; };
+		D61AE6E526628A0C0080AA5C /* CatigoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatigoriesView.swift; sourceTree = "<group>"; };
 		D64B93662655D13F00CF85B9 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
-		D6845F9F2660D756001F4D7B /* KeyboardGuardian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardGuardian.swift; sourceTree = "<group>"; };
-		D6845FA22660D847001F4D7B /* geometryGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = geometryGetter.swift; sourceTree = "<group>"; };
 		D68B5D0D265C9F1000EE5159 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D6A977782639D552003422B3 /* Codes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Codes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A9777B2639D552003422B3 /* CodesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesApp.swift; sourceTree = "<group>"; };
@@ -198,9 +196,8 @@
 				D6AAA99126534DCD0097D571 /* TestCells.swift */,
 				D64B93662655D13F00CF85B9 /* AddButton.swift */,
 				D68B5D0D265C9F1000EE5159 /* SettingsView.swift */,
-				D6845F9F2660D756001F4D7B /* KeyboardGuardian.swift */,
-				D6845FA22660D847001F4D7B /* geometryGetter.swift */,
 				D61AE6E226623B3E0080AA5C /* CategoriesScrollView.swift */,
+				D61AE6E526628A0C0080AA5C /* CatigoriesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -335,18 +332,17 @@
 				D6AAA99226534DCD0097D571 /* TestCells.swift in Sources */,
 				D6B6CE0E263C1B43006EAF64 /* StoreCodesVM.swift in Sources */,
 				D6A9777C2639D552003422B3 /* CodesApp.swift in Sources */,
-				D6845FA02660D756001F4D7B /* KeyboardGuardian.swift in Sources */,
 				D6B9E3D3265216F000C0E764 /* CodesView.swift in Sources */,
 				D6B6CE0B263C1A34006EAF64 /* StoreCode.swift in Sources */,
 				D6A978572639E953003422B3 /* View+Extensions.swift in Sources */,
 				D6B9E3D926532D8F00C0E764 /* CodeWithVotesView.swift in Sources */,
 				D6B7E4DA265BF1F6006CBD55 /* SpecialCodeCell.swift in Sources */,
+				D61AE6E626628A0C0080AA5C /* CatigoriesView.swift in Sources */,
 				D6B6CE17263C2DE3006EAF64 /* AddCodeView.swift in Sources */,
 				D6B6CE11263C2286006EAF64 /* StoreCodesListView.swift in Sources */,
 				D6A9784E2639DEB2003422B3 /* FireStoreManager.swift in Sources */,
 				D6B6CE2026405BC6006EAF64 /* CreateUserVM.swift in Sources */,
 				D64B93672655D13F00CF85B9 /* AddButton.swift in Sources */,
-				D6845FA32660D847001F4D7B /* geometryGetter.swift in Sources */,
 				D68B5D0E265C9F1000EE5159 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

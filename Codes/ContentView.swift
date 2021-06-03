@@ -38,12 +38,14 @@ import SwiftUI
 struct ContentView: View {
     
     
-    @ObservedObject private var storeListVM = StoreListViewMode()
+    @StateObject private var storeListVM = StoreListViewMode()
     
     @StateObject private var regesterVM = CreateUserViewModel()
     
     @State var searchText = ""
     @State var isSearching = false
+    
+    @State var selectedCategory = "الكل"
     
     @State var selection: String? = nil
     
@@ -64,43 +66,67 @@ struct ContentView: View {
             VStack {
                 SearchBar(searchText: $searchText, isSearching: $isSearching)
                 
-                
+                if !isSearching {
+                    CategoriesScrollView(selectedCategory: $selectedCategory)
+                        .padding(.vertical, 8)
+                    
+                }
                 
                 GeometryReader { outerGeometry in
                     ScrollView {
                         LazyVStack(alignment: .leading) {
-                            ForEach(storeListVM.stores.filter({
-                                "\($0)".contains(searchText) || searchText.isEmpty
-                            }), id: \.storeId) { store in
-                                NavigationLink(
-                                    destination: StoreCodesListView(store: store), tag: store.storeId, selection: $selection) {
-                                    
-                                    
-                                    GeometryReader { innerGeometry in
-                                        HStack {
-                                            Image(store.picture)
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 60, height: 60)
-                                                .clipShape(Circle())
-                                                .padding(.horizontal, 5)
-                                            Text(store.name)
-                                                .font(.headline)
-                                        }
-                                        .padding(.leading, 7)
-                                        .padding(.top, 10)
+                            
+                            if storeListVM.storesSaved {
+                                ForEach(storeListVM.stores.filter({
+                                    if !searchText.isEmpty {
+                                        return "\($0)".contains(searchText)
                                     }
-                                    .frame(width: outerGeometry.size.width - 30, height: 80)
-                                    .background((selection == store.storeId) ? LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5), Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading) :
-                                        LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.8), Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading)
-                                    )
-                                    .cornerRadius(30)
-                                    .padding(.leading, 15)
+                                    return "\($0.category)".contains(selectedCategory)
+    //                                "\($0)".contains(searchText) || searchText.isEmpty
+                                }), id: \.storeId) { store in
+                                    NavigationLink(
+                                        destination: StoreCodesListView(store: store), tag: store.storeId, selection: $selection) {
+                                        
+                                        
+                                        GeometryReader { innerGeometry in
+                                            HStack {
+                                                Image(store.picture)
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 50, height: 50)
+                                                    .clipShape(Circle())
+                                                    .padding(.horizontal, 5)
+                                                Text(store.name)
+                                                    .font(.body)
+                                            }
+                                            .padding(.leading, 7)
+                                            .padding(.top, 10)
+                                        }
+                                        .frame(width: outerGeometry.size.width - 30, height: 70)
+                                        .background((selection == store.storeId) ? LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5), Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading) :
+                                            LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.8), Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading)
+                                        )
+                                        .cornerRadius(30)
+                                        .padding(.leading, 15)
+                                        
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                    .padding(.vertical, 5)
+    //                                .background((selection != nil) ? Color.red : Color.clear)
                                     
                                 }
-                                .buttonStyle(PlainButtonStyle())
-                                .padding(.vertical, 5)
-//                                .background((selection != nil) ? Color.red : Color.clear)
+                            } else {
+                                
+                                VStack {
+                                    HStack(alignment: .center) {
+                                        Spacer()
+                                        ProgressView()
+                                            .progressViewStyle(CircularProgressViewStyle())
+//                                            .scaleEffect(1.5, anchor: .center)
+                                        Spacer()
+                                    }
+                                }.frame(height: outerGeometry.size.height / 2, alignment: .center)
+                                
                                 
                             }
                         }
@@ -123,14 +149,16 @@ struct ContentView: View {
 //            .embedInNavigationView()
             .accentColor(Color(#colorLiteral(red: 0.09803921569, green: 0.09803921569, blue: 0.09803921569, alpha: 1)))
             
-            .onAppear {
-                storeListVM.getAll()
-                regesterVM.CreateUser {_ in
-                    print("User created")
-                    
-                }
+            
         }
-        }
+        .onAppear {
+            storeListVM.getAll()
+            print("onappear is accessed on contentview")
+            regesterVM.CreateUser {_ in
+                print("User created")
+                
+            }
+    }
     }
 }
 

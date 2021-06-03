@@ -133,7 +133,7 @@ struct AddCodeView: View {
 
 struct AddCodeView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCodeView(store: StoreViewModel(store: Store(id: "", name: "", picture: "", codes: nil)))
+        AddCodeView(store: StoreViewModel(store: Store(id: "", name: "", picture: "", codes: nil, category: [])))
     }
 }
 

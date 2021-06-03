@@ -12,5 +12,9 @@ struct Store: Codable {
     let name: String
     let picture: String
     var codes: [String]?
-//    let category: String
+    let category: [String]
 }
+
+
+
+

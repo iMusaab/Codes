@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @ObservedObject private var storeListVM = StoreListViewMode()
     
     @State private var selectedTab = 1
     
@@ -24,7 +25,7 @@ struct MainView: View {
 //            UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
             UITabBar.appearance().clipsToBounds = true
         
-            UINavigationBar.appearance().barTintColor = .clear
+        UINavigationBar.appearance().barTintColor = UIColor(Color.white.opacity(0.1))
     //        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
             UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
             UINavigationBar.appearance().isTranslucent = true
@@ -38,6 +39,9 @@ struct MainView: View {
                     Image(systemName: "house").font(.system(size: 26))
                 }
                 .tag(1)
+                .onTapGesture {
+                    self.selectedTab = 1
+                }
             SettingsView()
                 .onTapGesture {
                         self.selectedTab = 2

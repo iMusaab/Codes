@@ -12,6 +12,8 @@ class StoreListViewMode: ObservableObject {
     private var fireStoreManager: FirestoreManager = FirestoreManager()
     @Published var stores: [StoreViewModel] = []
     
+    @Published var storesSaved = false
+    
     func getAll() {
         
         fireStoreManager.getAllStores { result in
@@ -20,6 +22,8 @@ class StoreListViewMode: ObservableObject {
                 if let stores = stores {
                     DispatchQueue.main.async {
                         self.stores = stores.map(StoreViewModel.init)
+                        print("stores saved successfully", self.stores)
+                        self.storesSaved = true
                     }
                 }
             case .failure(let error):
@@ -47,5 +51,9 @@ struct StoreViewModel {
     
     var codes: [String] {
         store.codes ?? []
+    }
+    
+    var category: [String] {
+        store.category
     }
 }
