@@ -61,6 +61,9 @@ class StoreCodeListViewModel: ObservableObject {
     @Published var enableVote: [Bool] = []
     @Published var isDisabled : Bool = false
     
+    @Published var specialCodeSaved = false
+    @Published var normalCodeSaved = false
+    
     
     
     
@@ -90,7 +93,8 @@ class StoreCodeListViewModel: ObservableObject {
                 if let specialCode = specialCode {
                     DispatchQueue.main.async {
                         self.storeSpecialCode = specialCode.map(StoreCodeViewModel.init)
-                        print("Success in storeCodeVM file in getStoreSpecialCodesByStoreId", self.storeSpecialCode)
+                        self.specialCodeSaved = true
+//                        print("Success in storeCodeVM file in getStoreSpecialCodesByStoreId", self.storeSpecialCode)
                         
                     }
                 }
@@ -120,6 +124,7 @@ class StoreCodeListViewModel: ObservableObject {
                         self.storeCodes = codes.map(StoreCodeViewModel.init)
                         self.enableVote = enableVote
                         self.isDisabled = false
+                        self.normalCodeSaved = true
                         print("Got storeCodeVM file in getStoreCodesByStoreId")
                     }
                 }

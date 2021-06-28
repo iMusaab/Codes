@@ -1,3 +1,4 @@
+
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
@@ -14,11 +15,15 @@ pod 'Firebase/Storage'
 
 pod 'Firebase/Firestore'
 
+pod ‘SDWebImageSwiftUI’
+
+
+
 
 
 # Optionally, include the Swift extensions if you're using Swift.
 
 pod 'FirebaseFirestoreSwift'
+pod 'Firebase/Messaging'
 
 end
-

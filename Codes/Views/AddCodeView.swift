@@ -55,6 +55,7 @@ struct AddCodeView: View {
                         
                     }
                     
+                    
                         VStack(alignment: .leading) {
                             Text("الوصف").font(.headline).foregroundColor(Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)))
                             
@@ -127,13 +128,15 @@ struct AddCodeView: View {
                 .environment(\.layoutDirection, .rightToLeft)
             
             
+            
         }
+        
     }
 }
 
 struct AddCodeView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCodeView(store: StoreViewModel(store: Store(id: "", name: "", picture: "", codes: nil, category: [])))
+        AddCodeView(store: StoreViewModel(store: Store(id: "", name: "", picture: "", onlinePicture: "", codes: nil, category: [], timeAscending: Date())))
     }
 }
 

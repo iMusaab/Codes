@@ -157,6 +157,6 @@ struct normalCodeCell_Previews: PreviewProvider {
     @State static var showHUD = false
     
     static var previews: some View {
-        normalCodeCell(voteEnabled: true , code: StoreCodeViewModel(storeCode: StoreCode(id: "", title: "خصم ١٠٪", Description: "هقتح قثختلحثقخل خحتثقلحختلقحخلقث لقخحتلقثحخقتلثلق ثحختحخلثقت لقلقحخثتلقث قلثخحتلقثح لق", code: "", url: "", votes: 2, votedBy: [], isEnabled: true, DateCreated: Date())), showHUD: $showHUD, storeCodeListVM: StoreCodeListViewModel(), store: StoreViewModel(store: Store(id: "", name: "HungerStation", picture: "HungerPic", codes: nil, category: []))).environment(\.layoutDirection, .rightToLeft)
+        normalCodeCell(voteEnabled: true , code: StoreCodeViewModel(storeCode: StoreCode(id: "", title: "خصم ١٠٪", Description: "هقتح قثختلحثقخل خحتثقلحختلقحخلقث لقخحتلقثحخقتلثلق ثحختحخلثقت لقلقحخثتلقث قلثخحتلقثح لق", code: "", url: "", votes: 2, votedBy: [], isEnabled: true, DateCreated: Date())), showHUD: $showHUD, storeCodeListVM: StoreCodeListViewModel(), store: StoreViewModel(store: Store(id: "", name: "HungerStation", picture: "HungerPic", onlinePicture: "", codes: nil, category: [], timeAscending: Date()))).environment(\.layoutDirection, .rightToLeft)
     }
 }

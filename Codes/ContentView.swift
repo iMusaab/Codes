@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 
 //extension List {
@@ -64,16 +65,30 @@ struct ContentView: View {
         
         ZStack {
             VStack {
-                SearchBar(searchText: $searchText, isSearching: $isSearching)
+                
+//                Button(action: {
+//                    storeListVM.addDocumentToFirestore()
+//                }, label: {
+//                    Text("Add Store")
+//                })
+                
+                SearchBar(searchText: $searchText, isSearching: $isSearching, selectedCategory: $selectedCategory)
+//                    .padding(.bottom, 5)
                 
                 if !isSearching {
                     CategoriesScrollView(selectedCategory: $selectedCategory)
-                        .padding(.vertical, 8)
+//                        .padding(.top, 10)
                     
                 }
                 
                 GeometryReader { outerGeometry in
                     ScrollView {
+                        RefreshControl(coordinateSpace: .named("RefreshControl")) {
+                            //refresh view here
+                            storeListVM.getAll()
+//                            selectedCategory = "الكل"
+                        }
+                        
                         LazyVStack(alignment: .leading) {
                             
                             if storeListVM.storesSaved {
@@ -89,25 +104,69 @@ struct ContentView: View {
                                         
                                         
                                         GeometryReader { innerGeometry in
+                                            
+                                            if !store.picture.isEmpty {
                                             HStack {
-                                                Image(store.picture)
+                                                
+                                                
+                                                    Image(store.picture)
                                                     .resizable()
                                                     .scaledToFit()
                                                     .frame(width: 50, height: 50)
                                                     .clipShape(Circle())
                                                     .padding(.horizontal, 5)
                                                 Text(store.name)
-                                                    .font(.body)
+                                                    .font(.body).bold()
+                                                
+                                                Spacer()
+                                                
+                                                Image(systemName: "chevron.forward")
+                                                    .padding(.trailing)
+                                                    .foregroundColor(.secondary)
                                             }
                                             .padding(.leading, 7)
                                             .padding(.top, 10)
+                                            } else {
+                                                HStack {
+                                                    ZStack {
+                                                        Image("SwarovskiPic")
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(width: 50, height: 50)
+                                                            .clipShape(Circle())
+                                                            .padding(.horizontal, 5)
+                                                        WebImage(url: URL(string: store.onlinePicture))
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(width: 50, height: 50)
+                                                            .clipShape(Circle())
+                                                            .padding(.horizontal, 5)
+                                                        
+                                                        
+                                                    }
+                                                    Text(store.name)
+                                                        .font(.body).bold()
+                                                    
+                                                    Spacer()
+                                                    
+                                                    Image(systemName: "chevron.forward")
+                                                        .padding(.trailing)
+                                                        .foregroundColor(.secondary)
+                                                }
+                                                .padding(.leading, 7)
+                                                .padding(.top, 10)
+                                            }
                                         }
                                         .frame(width: outerGeometry.size.width - 30, height: 70)
-                                        .background((selection == store.storeId) ? LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5), Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading) :
-                                            LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.8), Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading)
-                                        )
+                                        .background((selection == store.storeId) ?
+                                                        Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5) : Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 1)).opacity(0.7))
+                                        
+                                            
+//                                                        LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5), Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading) :
+//                                            LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.8), Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading))
                                         .cornerRadius(30)
                                         .padding(.leading, 15)
+//                                        .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.1), radius: 10, x: 0, y: 10)
                                         
                                     }
                                     .buttonStyle(PlainButtonStyle())
@@ -130,7 +189,7 @@ struct ContentView: View {
                                 
                             }
                         }
-                    }
+                    }.coordinateSpace(name: "RefreshControl")
                     .animation(.default)
                     .navigationBarTitleDisplayMode(.large)
                     .navigationBarTitle("المتاجر")
@@ -153,6 +212,7 @@ struct ContentView: View {
         }
         .onAppear {
             storeListVM.getAll()
+            selectedCategory = "الكل"
             print("onappear is accessed on contentview")
             regesterVM.CreateUser {_ in
                 print("User created")
@@ -171,63 +231,5 @@ struct ContentView_Previews: PreviewProvider {
 
 
 
-struct SearchBar: View {
-    @Binding var searchText: String
-    @Binding var isSearching: Bool
-    
-    var body: some View {
-        
-            HStack {
-                HStack {
-                    TextField("بحث...", text: $searchText)
-                        .padding(isSearching ? 8 : 7)
-                        .padding(.horizontal, 20)
-                        .background(Color(.white))
-                        .cornerRadius(20)
-                        .padding(.horizontal, 15)
-                        .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.06), radius: 5, x: 0, y: 4)
-                }
-                
-                .onTapGesture {
-                    isSearching = true
-                }
-                .overlay(
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading, 20)
-                        
-                        if isSearching {
-                            Button(action: {
-                                searchText = ""
-                            }, label: {
-                                Image(systemName: "xmark.circle.fill")
-                                    .padding(.trailing, 20)
-                                    .padding(.vertical)
-                            })
-                            
-                            
-                        }
-                    }
-                    .foregroundColor(.gray)
-                ).transition(.move(edge: .trailing))
-                .animation(.default)
-                
-                if isSearching {
-                    Button(action: {
-                        isSearching = false
-                        searchText = ""
-                        
-                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                    }, label: {
-                        Text("إلغاء")
-                            .padding(.trailing)
-                            .padding(.leading, -4)
-                    })
-                    .transition(.move(edge: .trailing))
-                    .animation(.default)
-                }
-            }
-        }
-    }
+
 

@@ -13,11 +13,16 @@ struct CategoriesScrollView: View {
     
     init(selectedCategory: Binding<String>) {
         catigories.append(Category(title: "الكل", icon: nil))
+        catigories.append(Category(title: "الأزياء", icon: "DressPic"))
+        catigories.append(Category(title: "تطبيقات التوصيل", icon: "DelivryPic"))
+        catigories.append(Category(title: "الأحذية", icon: "ShoesPic"))
         catigories.append(Category(title: "الجمال والعطور", icon: "perfumePic"))
-        catigories.append(Category(title: "المتاجر الكبرى", icon: nil))
-        catigories.append(Category(title: "تطبيقات التوصيل", icon: nil))
-        catigories.append(Category(title: "إلكترونيات", icon: nil))
-        catigories.append(Category(title: "سفر", icon: nil))
+        catigories.append(Category(title: "صحة", icon: "HealthPic"))
+        catigories.append(Category(title: "المتاجر الكبرى", icon: "StorePic"))
+        catigories.append(Category(title: "إلكترونيات", icon: "PlugPic"))
+        catigories.append(Category(title: "أطفال", icon: "KidPic"))
+        catigories.append(Category(title: "سفر", icon: "TravelPic"))
+        catigories.append(Category(title: "أخرى", icon: nil))
         
         self._selectedCategory = selectedCategory
         
@@ -30,7 +35,7 @@ struct CategoriesScrollView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 ScrollViewReader { value in
-                    HStack(alignment: .center, spacing: 10) {
+                    HStack(alignment: .center, spacing: 2) {
                         ForEach(catigories, id: \.self) { category in
                             Button(action: {
                                 
@@ -43,23 +48,26 @@ struct CategoriesScrollView: View {
                                         Image(icon)
                                             .resizable()
                                             .scaledToFit()
-                                            .frame(width: 15, height: 15, alignment: .center)
+                                            .frame(width: category == catigories[3] ? 18 : 15, height: 15, alignment: .center)
                                     }
-                                    Text(category.title).fixedSize()
-                                        .font(.footnote)
+                                    Text(category.title)
+                                        .font(.footnote).bold()
+                                        .fixedSize()
                                         .foregroundColor(Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)))
                                     
                                 }
-                                .padding(.vertical, 5)
+                                .padding(.vertical, 7)
                                 .padding(.horizontal, 8)
                                 .background(chosenCategoryHashValue == category.hashValue ? Color(#colorLiteral(red: 0.8078431373, green: 0.8156862745, blue: 0.8078431373, alpha: 1)) : Color.clear)
                                 .cornerRadius(11)
+                                .padding(.top, 19)
                                 
                             })
                             
                             
                         }
-                    }.padding(.horizontal)
+                    }
+                    
                     .onAppear {
                         chosenCategoryHashValue = catigories[0].hashValue
                         value.scrollTo(catigories[catigories.startIndex])
@@ -68,6 +76,7 @@ struct CategoriesScrollView: View {
                 
                 
             }
+            .padding(.horizontal, 7)
         }
     }
 }

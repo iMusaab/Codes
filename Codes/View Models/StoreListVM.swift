@@ -14,6 +14,14 @@ class StoreListViewMode: ObservableObject {
     
     @Published var storesSaved = false
     
+    func getStoreImageFromFirebase() {
+        fireStoreManager.loadImageFromFirebase()
+    }
+    
+    func addDocumentToFirestore() {
+        fireStoreManager.addDocumentToFirestore()
+    }
+    
     func getAll() {
         
         fireStoreManager.getAllStores { result in
@@ -49,11 +57,19 @@ struct StoreViewModel {
         store.picture
     }
     
+    var onlinePicture: String {
+        store.onlinePicture
+    }
+    
     var codes: [String] {
         store.codes ?? []
     }
     
     var category: [String] {
         store.category
+    }
+    
+    var timeAscending: Date {
+        store.timeAscending
     }
 }

@@ -43,6 +43,7 @@ struct MainView: View {
                     self.selectedTab = 1
                 }
             SettingsView()
+                
                 .onTapGesture {
                         self.selectedTab = 2
                 }
@@ -53,8 +54,9 @@ struct MainView: View {
         }
         
         .navigationBarTitle(shownTitle)
-        .embedInNavigationView()
         .accentColor(Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)))
+        .embedInNavigationView()
+        .accentColor(Color(#colorLiteral(red: 0.09803921569, green: 0.09803921569, blue: 0.09803921569, alpha: 1)))
     }
 }
 

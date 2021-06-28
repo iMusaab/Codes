@@ -8,14 +8,66 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseStorage
+import SwiftUI
 
 class FirestoreManager {
     
     private var db: Firestore
+    @State private var imageURL = URL(string: "")
     
     init() {
         db = Firestore.firestore()
     }
+    
+    func updateStoreSpecialCode(storeId: String, storeCode: StoreCode, completion: @escaping (Result<Store?, Error>) -> Void) {
+        do {
+            
+            let _ = try db.collection("stores").document(storeId).collection("specialCode").addDocument(from: storeCode)
+            
+            self.getStoreById(storeId: storeId) { result in
+                switch result {
+                case .success(let store):
+                    completion(.success(store))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+            
+        } catch let error {
+            completion(.failure(error))
+        }
+    }
+    
+    func addDocumentToFirestore() {
+        var ref: DocumentReference? = nil
+        
+        ref = db.collection("stores").addDocument(data: [
+            "category": ["الكل", "الأحذية"],
+            "timeAscending": Timestamp(date: Date()),
+            "onlinePicture": "",
+            "picture": "",
+            "name": "",
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+            
+        }
+    }
+    
+    func loadImageFromFirebase() {
+        let storageRef = Storage.storage().reference(withPath: "Asset 3@2x.png")
+        storageRef.downloadURL { (url, error) in
+                     if error != nil {
+                         print((error?.localizedDescription)!)
+                         return
+              }
+                    self.imageURL = url!
+        }
+      }
     
     func updateCodeVotes(storeId: String, storeCodeId: String, userId: String, upOrDown: codeVote, completion: @escaping (Result<[StoreCode]?, Error>) -> Void) {
         
@@ -138,7 +190,9 @@ class FirestoreManager {
         
         func getAllStores(completion: @escaping (Result<[Store]?, Error>) -> Void) {
             
-            db.collection("stores").getDocuments { (snapshot, error) in
+            db.collection("stores")
+                .order(by: "timeAscending", descending: true)
+                .getDocuments { (snapshot, error) in
                 if let error = error {
                     completion(.failure(error))
                 } else {

@@ -96,7 +96,7 @@ struct StoreCodesListView: View {
     
     struct StoreCodesListView_Previews: PreviewProvider {
         static var previews: some View {
-            StoreCodesListView(store: StoreViewModel(store: Store(id: "", name: "thr", picture: "hungerPic", codes: nil, category: [])))
+            StoreCodesListView(store: StoreViewModel(store: Store(id: "", name: "thr", picture: "hungerPic", onlinePicture: "", codes: nil, category: [], timeAscending: Date())))
         }
     }
     
