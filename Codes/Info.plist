@@ -48,13 +48,8 @@
 		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
-	<key>UILaunchScreen</key>
-	<dict>
-		<key>UIImageRespectsSafeAreaInsets</key>
-		<true/>
-		<key>UIImageName</key>
-		<string>Asset 1</string>
-	</dict>
+	<key>UILaunchStoryboardName</key>
+	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

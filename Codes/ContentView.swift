@@ -47,6 +47,7 @@ struct ContentView: View {
     @State var isSearching = false
     
     @Binding var selectedCategory: String
+    @State var category: String = "الأشهر"
     
     @State var selection: String? = nil
     
@@ -98,79 +99,83 @@ struct ContentView: View {
                                         return "\($0.category)".contains(selectedCategory)
                                         //                                "\($0)".contains(searchText) || searchText.isEmpty
                                     }), id: \.id) { store in
-                                        
-                                        NavigationLink(
-                                            destination: StoreCodesListView(store: store), tag: store.id, selection: $selection) {
-                                            
-                                            
-                                            GeometryReader { innerGeometry in
+                                        Button(action: {
+                                            category = selectedCategory
+                                        }, label: {
+                                            NavigationLink(
+                                                destination: StoreCodesListView(store: store), tag: store.id, selection: $selection) {
                                                 
-                                                if !store.picture.isEmpty {
-                                                    HStack {
-                                                        
-                                                        
-                                                        Image(store.picture)
-                                                            .resizable()
-                                                            .scaledToFit()
-                                                            .frame(width: 50, height: 50)
-                                                            .clipShape(Circle())
-                                                            .padding(.horizontal, 5)
-                                                        Text(store.name)
-                                                            .font(.body).bold()
-                                                        
-                                                        Spacer()
-                                                        
-                                                        Image(systemName: "chevron.forward")
-                                                            .padding(.trailing)
-                                                            .foregroundColor(.secondary)
-                                                    }
-                                                    .padding(.leading, 7)
-                                                    .padding(.top, 10)
-                                                } else {
-                                                    HStack {
-                                                        ZStack {
-                                                            Image("SwarovskiPic")
+                                                
+                                                GeometryReader { innerGeometry in
+                                                    
+                                                    if !store.picture.isEmpty {
+                                                        HStack {
+                                                            
+                                                            
+                                                            Image(store.picture)
                                                                 .resizable()
                                                                 .scaledToFit()
                                                                 .frame(width: 50, height: 50)
                                                                 .clipShape(Circle())
                                                                 .padding(.horizontal, 5)
-                                                            WebImage(url: URL(string: store.onlinePicture))
-                                                                .resizable()
-                                                                .scaledToFit()
-                                                                .frame(width: 50, height: 50)
-                                                                .clipShape(Circle())
-                                                                .padding(.horizontal, 5)
+                                                            Text(store.name)
+                                                                .font(.body).bold()
                                                             
+                                                            Spacer()
                                                             
+                                                            Image(systemName: "chevron.forward")
+                                                                .padding(.trailing)
+                                                                .foregroundColor(.secondary)
                                                         }
-                                                        Text(store.name)
-                                                            .font(.body).bold()
-                                                        
-                                                        Spacer()
-                                                        
-                                                        Image(systemName: "chevron.forward")
-                                                            .padding(.trailing)
-                                                            .foregroundColor(.secondary)
+                                                        .padding(.leading, 7)
+                                                        .padding(.top, 10)
+                                                    } else {
+                                                        HStack {
+                                                            ZStack {
+                                                                Image("SwarovskiPic")
+                                                                    .resizable()
+                                                                    .scaledToFit()
+                                                                    .frame(width: 50, height: 50)
+                                                                    .clipShape(Circle())
+                                                                    .padding(.horizontal, 5)
+                                                                WebImage(url: URL(string: store.onlinePicture))
+                                                                    .resizable()
+                                                                    .scaledToFit()
+                                                                    .frame(width: 50, height: 50)
+                                                                    .clipShape(Circle())
+                                                                    .padding(.horizontal, 5)
+                                                                
+                                                                
+                                                            }
+                                                            Text(store.name)
+                                                                .font(.body).bold()
+                                                            
+                                                            Spacer()
+                                                            
+                                                            Image(systemName: "chevron.forward")
+                                                                .padding(.trailing)
+                                                                .foregroundColor(.secondary)
+                                                        }
+                                                        .padding(.leading, 7)
+                                                        .padding(.top, 10)
                                                     }
-                                                    .padding(.leading, 7)
-                                                    .padding(.top, 10)
                                                 }
+                                                .frame(width: outerGeometry.size.width - 30, height: 70)
+                                                .background((selection == store.id) ?
+                                                                Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5) : Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 1)).opacity(0.7))
+                                                
+                                                
+                                                //                                                        LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5), Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading) :
+                                                //                                            LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.8), Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading))
+                                                .cornerRadius(30)
+                                                .padding(.leading, 15)
+                                                //                                        .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.1), radius: 10, x: 0, y: 10)
+                                                
                                             }
-                                            .frame(width: outerGeometry.size.width - 30, height: 70)
-                                            .background((selection == store.id) ?
-                                                            Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5) : Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 1)).opacity(0.7))
-                                            
-                                            
-                                            //                                                        LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5), Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading) :
-                                            //                                            LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.8), Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading))
-                                            .cornerRadius(30)
-                                            .padding(.leading, 15)
-                                            //                                        .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.1), radius: 10, x: 0, y: 10)
-                                            
-                                        }
-                                        .buttonStyle(PlainButtonStyle())
-                                        .padding(.vertical, 5)
+                                            .buttonStyle(PlainButtonStyle())
+                                            .padding(.vertical, 5)
+                                        })
+                                        
                                         //                                .background((selection != nil) ? Color.red : Color.clear)
                                         
                                     }
@@ -190,7 +195,7 @@ struct ContentView: View {
                                 }
                             }
                         }
-                        .id("SCROLL_TO_TOP")
+//                        .id("SCROLL_TO_TOP")
                         .onChange(of: selectedCategory) { category in
                             if let store = storeListVM.stores.first( where: { "\($0.category)".contains(category)
                             }) {
@@ -227,7 +232,7 @@ struct ContentView: View {
         }
         .onAppear {
             storeListVM.getAll()
-//            selectedCategory = "الكل"
+//            selectedCategory = category
             print("onappear is accessed on contentview")
             regesterVM.CreateUser {_ in
                 print("User created")

@@ -69,7 +69,10 @@ struct CategoriesScrollView: View {
                     }
                     
                     .onAppear {
-                        chosenCategoryHashValue = catigories[0].hashValue
+                        if chosenCategoryHashValue == nil {
+                            chosenCategoryHashValue = catigories[0].hashValue
+                        }
+//
                         value.scrollTo(catigories[catigories.startIndex])
                     }
                 }
