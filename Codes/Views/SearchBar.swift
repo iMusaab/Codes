@@ -55,7 +55,7 @@ struct SearchBar: View {
                     Button(action: {
                         isSearching = false
                         searchText = ""
-                        selectedCategory = "الكل"
+//                        selectedCategory = "الكل"
 //                        storeListVM.getAll()
                         
                         

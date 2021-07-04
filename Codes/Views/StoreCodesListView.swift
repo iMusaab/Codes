@@ -54,13 +54,13 @@ struct StoreCodesListView: View {
                         
                         .onChange(of: storeCodeListVM.voteSaved, perform: { value in
                             if value {
-                                storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
+                                storeCodeListVM.getStoreCodesByStoreId(storeId: store.id, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
                             }
                         })
                         
                     } 
                     .sheet(isPresented: $isPresented, onDismiss: {
-                            storeCodeListVM.getStoreById(storeId: store.storeId
+                            storeCodeListVM.getStoreById(storeId: store.id
                             )}, content: {
                                 AddCodeView(store: store)
                             })
@@ -74,9 +74,9 @@ struct StoreCodesListView: View {
                     .onAppear(perform: {
                         UITabBar.appearance().tintColor = .black
                         
-                        storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
+                        storeCodeListVM.getStoreCodesByStoreId(storeId: store.id, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
                         
-                        storeCodeListVM.getStoreSpecialCodeByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
+                        storeCodeListVM.getStoreSpecialCodeByStoreId(storeId: store.id, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
                         
                     })
                 }

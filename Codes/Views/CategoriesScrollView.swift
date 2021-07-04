@@ -12,7 +12,7 @@ struct CategoriesScrollView: View {
     @State private var chosenCategoryHashValue: Int?
     
     init(selectedCategory: Binding<String>) {
-        catigories.append(Category(title: "الكل", icon: nil))
+        catigories.append(Category(title: "الأشهر", icon: "PopularPic"))
         catigories.append(Category(title: "الأزياء", icon: "DressPic"))
         catigories.append(Category(title: "تطبيقات التوصيل", icon: "DelivryPic"))
         catigories.append(Category(title: "الأحذية", icon: "ShoesPic"))

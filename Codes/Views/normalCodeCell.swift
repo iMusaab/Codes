@@ -39,8 +39,8 @@ struct normalCodeCell: View {
                     VStack {
                         Button(action: {
                             
-                            storeCodeListVM.updateCodeVotes(storeId: store.storeId, storeCodeId: code.storeCodeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "", upOrDown: .up)
-                            storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
+                            storeCodeListVM.updateCodeVotes(storeId: store.id, storeCodeId: code.storeCodeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "", upOrDown: .up)
+                            storeCodeListVM.getStoreCodesByStoreId(storeId: store.id, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
                             
                             storeCodeListVM.isDisabled = true
                         }, label: {
@@ -58,8 +58,8 @@ struct normalCodeCell: View {
                             .frame(width: 30, alignment: .center)
                         
                         Button(action: {
-                            storeCodeListVM.updateCodeVotes(storeId: store.storeId, storeCodeId: code.storeCodeId, userId:regesterVM.defaults.string(forKey: "userId") ?? "", upOrDown: .down)
-                            storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
+                            storeCodeListVM.updateCodeVotes(storeId: store.id, storeCodeId: code.storeCodeId, userId:regesterVM.defaults.string(forKey: "userId") ?? "", upOrDown: .down)
+                            storeCodeListVM.getStoreCodesByStoreId(storeId: store.id, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
                             storeCodeListVM.isDisabled = true
                         }, label: {
                             Image(systemName: "chevron.down")

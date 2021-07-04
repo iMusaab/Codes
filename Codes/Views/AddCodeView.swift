@@ -47,11 +47,11 @@ struct AddCodeView: View {
                                 .font(.callout)
                                 .padding(.leading, 10)
                                 .frame(width: geometry.size.width * 0.9, height: 50, alignment: .center)
-                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(storeCodeVS.title.count >= 12 ? Color.red : Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)), lineWidth: 0.8))
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(storeCodeVS.title.count > 12 ? Color.red : Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)), lineWidth: 0.8))
                         
                         Text("بحد اقصى ١٢ حرف")
                             .font(.caption)
-                            .foregroundColor(storeCodeVS.title.count >= 12 ? Color.red : .secondary)
+                            .foregroundColor(storeCodeVS.title.count > 12 ? Color.red : .secondary)
                         
                     }
                     
@@ -64,11 +64,11 @@ struct AddCodeView: View {
                                     .padding(.leading, 10)
                                     .padding(.top, 10)
                                     .frame(width: geometry.size.width * 0.9, height: 50, alignment: .top)
-                                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(storeCodeVS.Description.count >= 50 ? Color.red : Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)), lineWidth: 0.8))
+                                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(storeCodeVS.Description.count > 50 ? Color.red : Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)), lineWidth: 0.8))
                             
                             Text("بحد اقصى ٥٠ حرف")
                                 .font(.caption)
-                                .foregroundColor(storeCodeVS.Description.count >= 50 ? Color.red : .secondary)
+                                .foregroundColor(storeCodeVS.Description.count > 50 ? Color.red : .secondary)
                         }
                     
                     VStack(alignment: .leading) {
@@ -78,21 +78,21 @@ struct AddCodeView: View {
                                 .font(.callout)
                                 .padding(.leading, 10)
                                 .frame(width: geometry.size.width * 0.9, height: 50, alignment: .center)
-                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(storeCodeVS.code.count >= 6 ? Color.red : Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)), lineWidth: 0.8))
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(storeCodeVS.code.count > 6 ? Color.red : Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)), lineWidth: 0.8))
                         
                         Text("بحد اقصى ٦ أحرف")
                             .font(.caption)
-                            .foregroundColor(storeCodeVS.code.count >= 6 ? Color.red : .secondary)
+                            .foregroundColor(storeCodeVS.code.count > 6 ? Color.red : .secondary)
                     }
                     
                         
                 } .padding(.top, 60)
                 Button(action: {
                     
-                    addCodeVM.addCodeToStore(storeId: store.storeId, storeCodeVS: storeCodeVS) { error in
+                    addCodeVM.addCodeToStore(storeId: store.id, storeCodeVS: storeCodeVS) { error in
                                             if error == nil {
                                                 storeCodeVS = StoreCodesViewState()
-                                                storeCodeListVM.getStoreCodesByStoreId(storeId: store.storeId, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
+                                                storeCodeListVM.getStoreCodesByStoreId(storeId: store.id, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
                                             }
                                         }
                     

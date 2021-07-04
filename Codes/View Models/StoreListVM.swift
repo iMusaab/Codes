@@ -42,10 +42,12 @@ class StoreListViewMode: ObservableObject {
 
 }
 
-struct StoreViewModel {
+struct StoreViewModel: Identifiable {
+    
+    
     let store: Store
     
-    var storeId: String {
+    var id: String { // has been named id instead of storeid in order to conform to identifible
         store.id ?? ""
     }
     

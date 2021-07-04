@@ -46,19 +46,19 @@ struct ContentView: View {
     @State var searchText = ""
     @State var isSearching = false
     
-    @State var selectedCategory = "الكل"
+    @Binding var selectedCategory: String
     
     @State var selection: String? = nil
     
-//    init() {
-//
-//        UINavigationBar.appearance().barTintColor = .clear
-////        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-////        UINavigationBar.appearance().isTranslucent = true
-//        UINavigationBar.appearance().shadowImage = UIImage()
-//
-//         }
+    //    init() {
+    //
+//            UINavigationBar.appearance().barTintColor = .clear
+    ////        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+    //        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+    ////        UINavigationBar.appearance().isTranslucent = true
+    //        UINavigationBar.appearance().shadowImage = UIImage()
+    //
+    //         }
     var body: some View {
         
         
@@ -66,166 +66,183 @@ struct ContentView: View {
         ZStack {
             VStack {
                 
-//                Button(action: {
-//                    storeListVM.addDocumentToFirestore()
-//                }, label: {
-//                    Text("Add Store")
-//                })
+                //                Button(action: {
+                //                    storeListVM.addDocumentToFirestore()
+                //                }, label: {
+                //                    Text("Add Store")
+                //                })
                 
                 SearchBar(searchText: $searchText, isSearching: $isSearching, selectedCategory: $selectedCategory)
-//                    .padding(.bottom, 5)
+                //                    .padding(.bottom, 5)
                 
-                if !isSearching {
-                    CategoriesScrollView(selectedCategory: $selectedCategory)
-//                        .padding(.top, 10)
-                    
-                }
+                CategoriesScrollView(selectedCategory: $selectedCategory)
+                //                        .padding(.top, 10)
                 
                 GeometryReader { outerGeometry in
-                    ScrollView {
-                        RefreshControl(coordinateSpace: .named("RefreshControl")) {
-                            //refresh view here
-                            storeListVM.getAll()
-//                            selectedCategory = "الكل"
-                        }
-                        
-                        LazyVStack(alignment: .leading) {
+                    ScrollViewReader { value in
+                        ScrollView {
                             
-                            if storeListVM.storesSaved {
-                                ForEach(storeListVM.stores.filter({
-                                    if !searchText.isEmpty {
-                                        return "\($0)".contains(searchText)
-                                    }
-                                    return "\($0.category)".contains(selectedCategory)
-    //                                "\($0)".contains(searchText) || searchText.isEmpty
-                                }), id: \.storeId) { store in
-                                    NavigationLink(
-                                        destination: StoreCodesListView(store: store), tag: store.storeId, selection: $selection) {
-                                        
-                                        
-                                        GeometryReader { innerGeometry in
-                                            
-                                            if !store.picture.isEmpty {
-                                            HStack {
-                                                
-                                                
-                                                    Image(store.picture)
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: 50, height: 50)
-                                                    .clipShape(Circle())
-                                                    .padding(.horizontal, 5)
-                                                Text(store.name)
-                                                    .font(.body).bold()
-                                                
-                                                Spacer()
-                                                
-                                                Image(systemName: "chevron.forward")
-                                                    .padding(.trailing)
-                                                    .foregroundColor(.secondary)
-                                            }
-                                            .padding(.leading, 7)
-                                            .padding(.top, 10)
-                                            } else {
-                                                HStack {
-                                                    ZStack {
-                                                        Image("SwarovskiPic")
-                                                            .resizable()
-                                                            .scaledToFit()
-                                                            .frame(width: 50, height: 50)
-                                                            .clipShape(Circle())
-                                                            .padding(.horizontal, 5)
-                                                        WebImage(url: URL(string: store.onlinePicture))
-                                                            .resizable()
-                                                            .scaledToFit()
-                                                            .frame(width: 50, height: 50)
-                                                            .clipShape(Circle())
-                                                            .padding(.horizontal, 5)
-                                                        
-                                                        
-                                                    }
-                                                    Text(store.name)
-                                                        .font(.body).bold()
-                                                    
-                                                    Spacer()
-                                                    
-                                                    Image(systemName: "chevron.forward")
-                                                        .padding(.trailing)
-                                                        .foregroundColor(.secondary)
-                                                }
-                                                .padding(.leading, 7)
-                                                .padding(.top, 10)
-                                            }
+                            RefreshControl(coordinateSpace: .named("RefreshControl")) {
+                                //refresh view here
+                                storeListVM.getAll()
+                                //                            selectedCategory = "الكل"
+                            }
+                            
+                            LazyVStack(alignment: .leading) {
+                                
+                                if storeListVM.storesSaved {
+                                    ForEach(storeListVM.stores.filter({
+                                        if !searchText.isEmpty {
+                                            return "\($0)".contains(searchText)
                                         }
-                                        .frame(width: outerGeometry.size.width - 30, height: 70)
-                                        .background((selection == store.storeId) ?
-                                                        Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5) : Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 1)).opacity(0.7))
+                                        return "\($0.category)".contains(selectedCategory)
+                                        //                                "\($0)".contains(searchText) || searchText.isEmpty
+                                    }), id: \.id) { store in
                                         
+                                        NavigationLink(
+                                            destination: StoreCodesListView(store: store), tag: store.id, selection: $selection) {
                                             
-//                                                        LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5), Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading) :
-//                                            LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.8), Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading))
-                                        .cornerRadius(30)
-                                        .padding(.leading, 15)
-//                                        .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.1), radius: 10, x: 0, y: 10)
+                                            
+                                            GeometryReader { innerGeometry in
+                                                
+                                                if !store.picture.isEmpty {
+                                                    HStack {
+                                                        
+                                                        
+                                                        Image(store.picture)
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(width: 50, height: 50)
+                                                            .clipShape(Circle())
+                                                            .padding(.horizontal, 5)
+                                                        Text(store.name)
+                                                            .font(.body).bold()
+                                                        
+                                                        Spacer()
+                                                        
+                                                        Image(systemName: "chevron.forward")
+                                                            .padding(.trailing)
+                                                            .foregroundColor(.secondary)
+                                                    }
+                                                    .padding(.leading, 7)
+                                                    .padding(.top, 10)
+                                                } else {
+                                                    HStack {
+                                                        ZStack {
+                                                            Image("SwarovskiPic")
+                                                                .resizable()
+                                                                .scaledToFit()
+                                                                .frame(width: 50, height: 50)
+                                                                .clipShape(Circle())
+                                                                .padding(.horizontal, 5)
+                                                            WebImage(url: URL(string: store.onlinePicture))
+                                                                .resizable()
+                                                                .scaledToFit()
+                                                                .frame(width: 50, height: 50)
+                                                                .clipShape(Circle())
+                                                                .padding(.horizontal, 5)
+                                                            
+                                                            
+                                                        }
+                                                        Text(store.name)
+                                                            .font(.body).bold()
+                                                        
+                                                        Spacer()
+                                                        
+                                                        Image(systemName: "chevron.forward")
+                                                            .padding(.trailing)
+                                                            .foregroundColor(.secondary)
+                                                    }
+                                                    .padding(.leading, 7)
+                                                    .padding(.top, 10)
+                                                }
+                                            }
+                                            .frame(width: outerGeometry.size.width - 30, height: 70)
+                                            .background((selection == store.id) ?
+                                                            Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5) : Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 1)).opacity(0.7))
+                                            
+                                            
+                                            //                                                        LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5), Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading) :
+                                            //                                            LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.8), Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading))
+                                            .cornerRadius(30)
+                                            .padding(.leading, 15)
+                                            //                                        .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.1), radius: 10, x: 0, y: 10)
+                                            
+                                        }
+                                        .buttonStyle(PlainButtonStyle())
+                                        .padding(.vertical, 5)
+                                        //                                .background((selection != nil) ? Color.red : Color.clear)
                                         
                                     }
-                                    .buttonStyle(PlainButtonStyle())
-                                    .padding(.vertical, 5)
-    //                                .background((selection != nil) ? Color.red : Color.clear)
+                                } else {
+                                    
+                                    VStack {
+                                        HStack(alignment: .center) {
+                                            Spacer()
+                                            ProgressView()
+                                                .progressViewStyle(CircularProgressViewStyle())
+                                            //                                            .scaleEffect(1.5, anchor: .center)
+                                            Spacer()
+                                        }
+                                    }.frame(height: outerGeometry.size.height / 2, alignment: .center)
+                                    
                                     
                                 }
-                            } else {
-                                
-                                VStack {
-                                    HStack(alignment: .center) {
-                                        Spacer()
-                                        ProgressView()
-                                            .progressViewStyle(CircularProgressViewStyle())
-//                                            .scaleEffect(1.5, anchor: .center)
-                                        Spacer()
-                                    }
-                                }.frame(height: outerGeometry.size.height / 2, alignment: .center)
-                                
-                                
                             }
                         }
-                    }.coordinateSpace(name: "RefreshControl")
-                    .animation(.default)
-                    .navigationBarTitleDisplayMode(.large)
-                    .navigationBarTitle("المتاجر")
+                        .id("SCROLL_TO_TOP")
+                        .onChange(of: selectedCategory) { category in
+                            if let store = storeListVM.stores.first( where: { "\($0.category)".contains(category)
+                            }) {
+//                                withAnimation {
+                                    value.scrollTo(store.id, anchor: .top)
+//                                }
+                                
+                        }
+                            
+                                }
+                        .coordinateSpace(name: "RefreshControl")
+//                        .animation(.default)
+                        .navigationBarTitleDisplayMode(.large)
+                        .navigationBarTitle("المتاجر")
+                    }
+                    
                 }
-//                .navigationBarHidden(isSearching)
+                //                .navigationBarHidden(isSearching)
                 
             }
             .background(
                 VStack {
-                    LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 1)), Color.white]), startPoint: .top, endPoint: .bottom)
+                    LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9529411765, green: 0.9529411765, blue: 0.9529411765, alpha: 1)), Color.white]), startPoint: .top, endPoint: .bottom)
                         .frame(height: 300)
                         .ignoresSafeArea(.all)
                     Spacer()
-                        
+
                 })
-//            .embedInNavigationView()
+//            .background(Color(#colorLiteral(red: 0.9529411765, green: 0.9529411765, blue: 0.9529411765, alpha: 1)).ignoresSafeArea(.all))
+            //            .embedInNavigationView()
             .accentColor(Color(#colorLiteral(red: 0.09803921569, green: 0.09803921569, blue: 0.09803921569, alpha: 1)))
             
             
         }
         .onAppear {
             storeListVM.getAll()
-            selectedCategory = "الكل"
+//            selectedCategory = "الكل"
             print("onappear is accessed on contentview")
             regesterVM.CreateUser {_ in
                 print("User created")
                 
             }
-    }
+        }
     }
 }
 
 
 struct ContentView_Previews: PreviewProvider {
+    @State static var selectedCategory = "الأشهر"
+    
     static var previews: some View {
-        ContentView().environment(\.layoutDirection, .rightToLeft)
+        ContentView(selectedCategory: $selectedCategory).environment(\.layoutDirection, .rightToLeft)
     }
 }
 

@@ -12,6 +12,8 @@ struct MainView: View {
     
     @State private var selectedTab = 1
     
+    @State private var selectedCategory = "الأشهر"
+    
     var shownTitle: String {
         if selectedTab == 2 {
             return "الاعدادات"
@@ -20,12 +22,12 @@ struct MainView: View {
     }
     
     init() {
-        UITabBar.appearance().barTintColor = .white
-            UITabBar.appearance().tintColor = .black
-//            UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
-            UITabBar.appearance().clipsToBounds = true
+//        UITabBar.appearance().barTintColor = UIColor(Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 0)))
+//            UITabBar.appearance().tintColor = .black
+            UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
+//            UITabBar.appearance().clipsToBounds = true
         
-        UINavigationBar.appearance().barTintColor = UIColor(Color.white.opacity(0.1))
+//        UINavigationBar.appearance().barTintColor = UIColor(Color.white.opacity(0.1))
     //        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
             UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
             UINavigationBar.appearance().isTranslucent = true
@@ -34,24 +36,32 @@ struct MainView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            ContentView()
+            ContentView(selectedCategory: $selectedCategory)
+                
                 .tabItem {
-                    Image(systemName: "house").font(.system(size: 26))
+                    Image(systemName: "house")
                 }
                 .tag(1)
                 .onTapGesture {
                     self.selectedTab = 1
+//                    selectedCategory = "صحة"
                 }
             SettingsView()
                 
                 .onTapGesture {
                         self.selectedTab = 2
+//                    selectedCategory = "صحة"
                 }
                 .tabItem {
-                    Image(systemName: "gear").font(.system(size: 26))
+                    Image(systemName: "gear")
                 }
                 .tag(2)
         }
+        .onChange(of: selectedTab, perform: { selectedTab in
+            if selectedTab == 1 {
+                selectedCategory = "الأشهر"
+            }
+        })
         
         .navigationBarTitle(shownTitle)
         .accentColor(Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)))
