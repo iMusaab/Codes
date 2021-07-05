@@ -74,6 +74,7 @@ struct ContentView: View {
                 //                })
                 
                 SearchBar(searchText: $searchText, isSearching: $isSearching, selectedCategory: $selectedCategory)
+//                    .frame(height: 20)
                 //                    .padding(.bottom, 5)
                 
                 CategoriesScrollView(selectedCategory: $selectedCategory)
@@ -161,9 +162,9 @@ struct ContentView: View {
                                                     }
                                                 }
                                                 .frame(width: outerGeometry.size.width - 30, height: 70)
-                                                .background((selection == store.id) ?
-                                                                Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5) : Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 1)).opacity(0.7))
-                                                
+//                                                .background((selection == store.id) ?
+//                                                                Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5) : Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 1)).opacity(0.7))
+                                                .background(Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 1)).opacity(0.7))
                                                 
                                                 //                                                        LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5), Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading) :
                                                 //                                            LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.8), Color(#colorLiteral(red: 0.9019607843, green: 0.9098039216, blue: 0.9019607843, alpha: 1)).opacity(0.5)]), startPoint: .trailing, endPoint: .leading))

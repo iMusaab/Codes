@@ -58,7 +58,7 @@ struct MainView: View {
                 .tag(2)
         }
         .onChange(of: selectedTab, perform: { selectedTab in
-            if selectedTab == 1 {
+            if selectedTab == 2 {
                 selectedCategory = "الأشهر"
             }
         })

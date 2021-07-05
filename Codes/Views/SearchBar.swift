@@ -41,7 +41,7 @@ struct SearchBar: View {
                             }, label: {
                                 Image(systemName: "xmark.circle.fill")
                                     .padding(.trailing, 20)
-                                    .padding(.vertical)
+                                    .padding(.vertical, 5)
                             })
                             
                             
