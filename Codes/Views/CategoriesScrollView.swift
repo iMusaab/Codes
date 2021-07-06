@@ -60,7 +60,7 @@ struct CategoriesScrollView: View {
                                 .padding(.horizontal, 8)
                                 .background(chosenCategoryHashValue == category.hashValue ? Color(#colorLiteral(red: 0.8078431373, green: 0.8156862745, blue: 0.8078431373, alpha: 1)) : Color.clear)
                                 .cornerRadius(11)
-                                .padding(.top, 19)
+                                .padding(.top, 25)
                                 
                             })
                             

@@ -18,7 +18,10 @@ struct SearchBar: View {
             HStack {
                 HStack {
                     TextField("بحث...", text: $searchText)
-                        .padding(isSearching ? 8 : 7)
+                        .onTapGesture {
+                            isSearching = true
+                        }
+                        .padding(7)
                         .padding(.horizontal, 20)
                         .background(Color(.white))
                         .cornerRadius(20)
@@ -26,9 +29,7 @@ struct SearchBar: View {
                         .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.06), radius: 2, x: 0, y: 1)
                 }
                 
-                .onTapGesture {
-                    isSearching = true
-                }
+                
                 .overlay(
                     HStack {
                         Image(systemName: "magnifyingglass")
@@ -41,7 +42,7 @@ struct SearchBar: View {
                             }, label: {
                                 Image(systemName: "xmark.circle.fill")
                                     .padding(.trailing, 20)
-                                    .padding(.vertical, 5)
+                                    .padding(.vertical, 2)
                             })
                             
                             

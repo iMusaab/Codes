@@ -30,7 +30,7 @@ class StoreListViewMode: ObservableObject {
                 if let stores = stores {
                     DispatchQueue.main.async {
                         self.stores = stores.map(StoreViewModel.init)
-                        print("stores saved successfully", self.stores)
+                        print("stores saved successfully")
                         self.storesSaved = true
                     }
                 }

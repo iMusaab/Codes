@@ -38,6 +38,7 @@ struct SpecialStoreCell: View {
                     .font(.system(size: 16, weight: .regular))
                     .frame(width: geometry.size.width - 120, alignment: .leading)
                     .padding(.bottom, 10)
+                    .foregroundColor(.white)
                 
                 Spacer()
                 

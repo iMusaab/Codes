@@ -234,7 +234,7 @@ struct ContentView: View {
         .onAppear {
             storeListVM.getAll()
 //            selectedCategory = category
-            print("onappear is accessed on contentview")
+//            print("onappear is accessed on contentview")
             regesterVM.CreateUser {_ in
                 print("User created")
                 

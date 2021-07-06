@@ -39,7 +39,8 @@ struct MainView: View {
             ContentView(selectedCategory: $selectedCategory)
                 
                 .tabItem {
-                    Image(systemName: "house")
+//                    Image(systemName: "house")
+                    Label("الرئيسية", systemImage: "house")
                 }
                 .tag(1)
                 .onTapGesture {
@@ -53,7 +54,7 @@ struct MainView: View {
 //                    selectedCategory = "صحة"
                 }
                 .tabItem {
-                    Image(systemName: "gear")
+                    Label("الإعدادات", systemImage: "gear")
                 }
                 .tag(2)
         }
