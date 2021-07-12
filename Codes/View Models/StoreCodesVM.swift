@@ -67,7 +67,9 @@ class StoreCodeListViewModel: ObservableObject {
     
     
     
-    
+    func createSpecialCode(storeId: String) {
+        firestoreManager.addStoreSpecialCode(storeId: storeId)
+    }
     
     func updateCodeVotes(storeId: String, storeCodeId: String, userId: String, upOrDown: codeVote) {
         

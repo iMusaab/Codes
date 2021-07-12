@@ -66,11 +66,20 @@ struct StoreCodesListView: View {
                             })
                     
                     .navigationBarTitle(store.name).navigationBarTitleDisplayMode(.inline)
-                    .navigationBarItems(trailing: Button(action: {
-                        isPresented = true
-                    }, label: {
-                        AddButton()
-                    }))
+                    .navigationBarItems(trailing:
+                                            HStack {
+                                                Button(action: {
+                            isPresented = true
+                        }, label: {
+                            AddButton()
+                    })
+                                                
+//                                                Button(action: {
+//                                                    
+//                                                }, label: {
+//                                                    Text("Add Special Code")
+//                                                })
+                                            })
                     .onAppear(perform: {
                         UITabBar.appearance().tintColor = .black
                         

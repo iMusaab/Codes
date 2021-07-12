@@ -52,10 +52,10 @@ struct normalCodeCell: View {
                         .disabled(voteEnabled || storeCodeListVM.isDisabled)
                         .buttonStyle(BorderlessButtonStyle())
                         
-                        Text("\(code.votes)")
+                        Text(code.votes > 99 ? "+99" : "\(code.votes)")
                             .font(.body).bold()
                             .foregroundColor(Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)))
-                            .frame(width: 30, alignment: .center)
+                            .frame(width: 35, alignment: .center)
                         
                         Button(action: {
                             storeCodeListVM.updateCodeVotes(storeId: store.id, storeCodeId: code.storeCodeId, userId:regesterVM.defaults.string(forKey: "userId") ?? "", upOrDown: .down)
@@ -114,7 +114,7 @@ struct normalCodeCell: View {
                                     Image(systemName: code.code.isEmpty ? "arrow.up.backward" : "doc.on.doc")
                                         .foregroundColor(Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)))
                                         .font(.system(size: code.code.isEmpty ? 14 : 12))
-                                    Text(code.code.isEmpty ? "اذهب" : code.code)
+                                    Text(code.code.isEmpty ? "اذهب" : code.code) .lineLimit(1)
                                         .font(.system(size: 18, weight: .bold))
                                         .foregroundColor(.black)
                                 }
@@ -157,6 +157,6 @@ struct normalCodeCell_Previews: PreviewProvider {
     @State static var showHUD = false
     
     static var previews: some View {
-        normalCodeCell(voteEnabled: true , code: StoreCodeViewModel(storeCode: StoreCode(id: "", title: "خصم ١٠٪", Description: "هقتح قثختلحثقخل خحتثقلحختلقحخلقث لقخحتلقثحخقتلثلق ثحختحخلثقت لقلقحخثتلقث قلثخحتلقثح لق", code: "", url: "", votes: 2, votedBy: [], isEnabled: true, DateCreated: Date())), showHUD: $showHUD, storeCodeListVM: StoreCodeListViewModel(), store: StoreViewModel(store: Store(id: "", name: "HungerStation", picture: "HungerPic", onlinePicture: "", codes: nil, category: [], timeAscending: Date()))).environment(\.layoutDirection, .rightToLeft)
+        normalCodeCell(voteEnabled: true , code: StoreCodeViewModel(storeCode: StoreCode(id: "", title: "خصم ١٠٪", Description: "هقتح قثختلحثقخل خحتثقلحختلقحخلقث لقخحتلقثحخقتلثلق ثحختحخلثقت لقلقحخثتلقث قلثخحتلقثح لق", code: "", url: "", votes: 100, votedBy: [], isEnabled: true, DateCreated: Date())), showHUD: $showHUD, storeCodeListVM: StoreCodeListViewModel(), store: StoreViewModel(store: Store(id: "", name: "HungerStation", picture: "HungerPic", onlinePicture: "", codes: nil, category: [], timeAscending: Date()))).environment(\.layoutDirection, .rightToLeft)
     }
 }

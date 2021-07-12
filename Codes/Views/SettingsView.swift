@@ -38,6 +38,8 @@ struct SettingsCellModel: Hashable {
 
 struct SettingsView: View {
     @State var selection: String? = nil
+    @StateObject var downloadModel = DownloadTaskModel()
+    @State var urlText = ""
     
     var settingCells: [SettingsCellModel] = [
         SettingsCellModel(title: "قيم التطبيق", icon: "star.fill"),
@@ -60,6 +62,7 @@ struct SettingsView: View {
                     })
                     .padding(.top, 45)
                     
+                    
                     Button(action: {
                         guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -71,14 +74,25 @@ struct SettingsView: View {
                         SettingsCell(title: settingCells[4].title, icon: settingCells[4].icon, outerGeometry: outerGeometry)
                     }
                     
-                    NavigationLink(
-                        destination: Text("Destination"),
-                        label: {
-                            SettingsCell(title: settingCells[2].title, icon: settingCells[2].icon, outerGeometry: outerGeometry)
-                        })
+                    
+                    
+                    Button(action: {
+//                        urlText = url
+//                        downloadModel.downloadAPDF()
+                        
+                    }, label: {
+                        NavigationLink(
+                            destination: PrivacyTermsView(document: .termsAndServices),
+                            label: {
+                                SettingsCell(title: settingCells[2].title, icon: settingCells[2].icon, outerGeometry: outerGeometry)
+                            })
+                                
+                            })
+                    
+                    
                     
                     NavigationLink(
-                        destination: Text("Destination"),
+                        destination: PrivacyTermsView(document: .Privacy),
                         label: {
                             SettingsCell(title: settingCells[3].title, icon: settingCells[3].icon, outerGeometry: outerGeometry)
                         })
@@ -100,6 +114,20 @@ struct SettingsView: View {
                 Spacer()
                     
             })
+//        .alert(isPresented: $downloadModel.showAlert, content: {
+//            Alert(title: Text("Message"), message: Text(downloadModel.alertMsg), dismissButton: .destructive(Text("موافق"), action: {
+//                
+//            }))
+//        })
+//        .overlay(
+//                
+//                    ZStack{
+//                        if downloadModel.showDownlodProgress{
+//                            DownloadProgressView(progress: $downloadModel.downloadProgress)
+//                                .environmentObject(downloadModel)
+//                        }
+//                    }
+//                )
     }
     
 }
@@ -176,3 +204,4 @@ struct SettingsView_Previews: PreviewProvider {
 }
 
 
+//let url = "https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4"

@@ -39,6 +39,11 @@
 		D6B9E3D6265229B000C0E764 /* CopyHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B9E3D5265229B000C0E764 /* CopyHUD.swift */; };
 		D6B9E3D926532D8F00C0E764 /* CodeWithVotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B9E3D826532D8E00C0E764 /* CodeWithVotesView.swift */; };
 		D6BD0AB726691DE600D591DC /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BD0AB626691DE600D591DC /* PullToRefreshView.swift */; };
+		D6BEA01D269A0457009D58A9 /* DownloadProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BEA01C269A0457009D58A9 /* DownloadProgressView.swift */; };
+		D6BEA01F269A6C13009D58A9 /* PrivacyTermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BEA01E269A6C13009D58A9 /* PrivacyTermsView.swift */; };
+		D6BEA021269B499A009D58A9 /* PDFURLVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BEA020269B499A009D58A9 /* PDFURLVM.swift */; };
+		D6BEA023269B49BA009D58A9 /* PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BEA022269B49BA009D58A9 /* PDF.swift */; };
+		D6C33C052699F3DA003EFC98 /* DownloadTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C33C042699F3DA003EFC98 /* DownloadTaskModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +95,11 @@
 		D6B9E3D5265229B000C0E764 /* CopyHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyHUD.swift; sourceTree = "<group>"; };
 		D6B9E3D826532D8E00C0E764 /* CodeWithVotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeWithVotesView.swift; sourceTree = "<group>"; };
 		D6BD0AB626691DE600D591DC /* PullToRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefreshView.swift; sourceTree = "<group>"; };
+		D6BEA01C269A0457009D58A9 /* DownloadProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadProgressView.swift; sourceTree = "<group>"; };
+		D6BEA01E269A6C13009D58A9 /* PrivacyTermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyTermsView.swift; sourceTree = "<group>"; };
+		D6BEA020269B499A009D58A9 /* PDFURLVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFURLVM.swift; sourceTree = "<group>"; };
+		D6BEA022269B49BA009D58A9 /* PDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDF.swift; sourceTree = "<group>"; };
+		D6C33C042699F3DA003EFC98 /* DownloadTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTaskModel.swift; sourceTree = "<group>"; };
 		D6EEDC29266FD36400566268 /* Codes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Codes.entitlements; sourceTree = "<group>"; };
 		E8831FC40442C47D6AEC1A10 /* Pods-Codes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codes.release.xcconfig"; path = "Target Support Files/Pods-Codes/Pods-Codes.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -191,6 +201,7 @@
 				D6A978482639DDE6003422B3 /* Store.swift */,
 				D6B6CE0A263C1A34006EAF64 /* StoreCode.swift */,
 				D6B6CE2226407999006EAF64 /* User.swift */,
+				D6BEA022269B49BA009D58A9 /* PDF.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,6 +229,8 @@
 				D6B6CE0D263C1B43006EAF64 /* StoreCodesVM.swift */,
 				D6B6CE19263C2E27006EAF64 /* AddCodeVM.swift */,
 				D6B6CE1F26405BC6006EAF64 /* CreateUserVM.swift */,
+				D6C33C042699F3DA003EFC98 /* DownloadTaskModel.swift */,
+				D6BEA020269B499A009D58A9 /* PDFURLVM.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -242,6 +255,8 @@
 				D6A34E5A26886EC5005DFEC5 /* SearchBar.swift */,
 				D6A34E5C268A3A09005DFEC5 /* StoresView.swift */,
 				D6B34FB82691D61E00F3984C /* Launch Screen.storyboard */,
+				D6BEA01C269A0457009D58A9 /* DownloadProgressView.swift */,
+				D6BEA01E269A6C13009D58A9 /* PrivacyTermsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -282,6 +297,8 @@
 			dependencies = (
 			);
 			name = Codes;
+			packageProductDependencies = (
+			);
 			productName = Codes;
 			productReference = D6A977782639D552003422B3 /* Codes.app */;
 			productType = "com.apple.product-type.application";
@@ -403,6 +420,7 @@
 			files = (
 				D61AE6E326623B3E0080AA5C /* CategoriesScrollView.swift in Sources */,
 				D6B6CE2326407999006EAF64 /* User.swift in Sources */,
+				D6C33C052699F3DA003EFC98 /* DownloadTaskModel.swift in Sources */,
 				D6B6CE4C26484A0F006EAF64 /* MainView.swift in Sources */,
 				D6B7E4DF265BFE63006CBD55 /* normalCodeCell.swift in Sources */,
 				D6BD0AB726691DE600D591DC /* PullToRefreshView.swift in Sources */,
@@ -418,12 +436,16 @@
 				D6B9E3D3265216F000C0E764 /* CodesView.swift in Sources */,
 				D6B6CE0B263C1A34006EAF64 /* StoreCode.swift in Sources */,
 				D6A978572639E953003422B3 /* View+Extensions.swift in Sources */,
+				D6BEA023269B49BA009D58A9 /* PDF.swift in Sources */,
 				D6B9E3D926532D8F00C0E764 /* CodeWithVotesView.swift in Sources */,
 				D6A34E5D268A3A09005DFEC5 /* StoresView.swift in Sources */,
 				D6B7E4DA265BF1F6006CBD55 /* SpecialCodeCell.swift in Sources */,
 				D61AE6E626628A0C0080AA5C /* CatigoriesView.swift in Sources */,
+				D6BEA01D269A0457009D58A9 /* DownloadProgressView.swift in Sources */,
 				D6B6CE17263C2DE3006EAF64 /* AddCodeView.swift in Sources */,
+				D6BEA021269B499A009D58A9 /* PDFURLVM.swift in Sources */,
 				D6B6CE11263C2286006EAF64 /* StoreCodesListView.swift in Sources */,
+				D6BEA01F269A6C13009D58A9 /* PrivacyTermsView.swift in Sources */,
 				D6A9784E2639DEB2003422B3 /* FireStoreManager.swift in Sources */,
 				D6B6CE2026405BC6006EAF64 /* CreateUserVM.swift in Sources */,
 				D64B93672655D13F00CF85B9 /* AddButton.swift in Sources */,
@@ -487,6 +509,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -550,6 +573,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -595,6 +619,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

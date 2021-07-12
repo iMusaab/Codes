@@ -93,7 +93,7 @@ struct StoresView: View {
                             if storeListVM.storesSaved {
 
                                 
-                                List() {
+                                List {
 
                                 ForEach(storeListVM.stores.filter({
                                     if !searchText.isEmpty {

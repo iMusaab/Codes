@@ -68,7 +68,7 @@ struct SpecialStoreCell: View {
                                 .foregroundColor(Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)))
                                 .font(.system(size: specialCode.code.isEmpty ? 14 : 12))
                             
-                            Text(specialCode.code.isEmpty ? "اذهب" : specialCode.code)
+                            Text(specialCode.code.isEmpty ? "اذهب" : specialCode.code).lineLimit(1)
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundColor(.black)
                         }

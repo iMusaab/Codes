@@ -20,23 +20,27 @@ class FirestoreManager {
         db = Firestore.firestore()
     }
     
-    func updateStoreSpecialCode(storeId: String, storeCode: StoreCode, completion: @escaping (Result<Store?, Error>) -> Void) {
-        do {
+    
+    func addStoreSpecialCode(storeId: String) {
+        var ref: DocumentReference? = nil
             
-            let _ = try db.collection("stores").document(storeId).collection("specialCode").addDocument(from: storeCode)
-            
-            self.getStoreById(storeId: storeId) { result in
-                switch result {
-                case .success(let store):
-                    completion(.success(store))
-                case .failure(let error):
-                    completion(.failure(error))
+            ref = db.collection("stores").document(storeId).collection("specialCode").addDocument(data: [
+                "DateCreated": Timestamp(date: Date()),
+                "title": "",
+                "Description": "",
+                "code": "",
+                "url": "",
+                "votedBy": [""],
+                "votes": 2,
+                "isEnabled": false,
+            ]) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
                 }
+                
             }
-            
-        } catch let error {
-            completion(.failure(error))
-        }
     }
     
     func addDocumentToFirestore() {
@@ -101,6 +105,12 @@ class FirestoreManager {
                 ])
         }
         
+    }
+    
+    func getPDFURL(completion: @escaping (Result<PDFURL?, Error>) -> Void) {
+        
+        db.collection("Terms")
+            .document()
     }
     
     func getStoreSpecialCodeBy(storeId: String, completion: @escaping (Result<[StoreCode]?, Error>) -> Void) {
@@ -185,8 +195,28 @@ class FirestoreManager {
                 completion(.failure(error))
             }
         }
+    
         
-        
+    func getTermsDocument(completion: @escaping (Result<[PDFURL]?, Error>) -> Void) {
+        db.collection("Terms")
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    
+                } else {
+                    if let snapshot = snapshot {
+                        let TermsDocument: [PDFURL]? = snapshot.documents.compactMap { document in
+                            var doc = try? document.data(as: PDFURL.self)
+                            if doc != nil {
+                                doc!.id = document.documentID
+                            }
+                            return doc
+                        }
+                        completion(.success(TermsDocument))
+                    }
+                }
+            }
+    }
         
         func getAllStores(completion: @escaping (Result<[Store]?, Error>) -> Void) {
             

@@ -43,6 +43,8 @@ struct ContentView: View {
     
     @StateObject private var regesterVM = CreateUserViewModel()
     
+//    @StateObject private var storeCodeListVM = StoreCodeListViewModel() // //Apply when wanting to add specialCode
+    
     @State var searchText = ""
     @State var isSearching = false
     
@@ -65,6 +67,7 @@ struct ContentView: View {
         
         
         ZStack {
+            
             VStack {
                 
                 //                Button(action: {
@@ -72,6 +75,14 @@ struct ContentView: View {
                 //                }, label: {
                 //                    Text("Add Store")
                 //                })
+                
+//                Button(action: {
+//                    storeListVM.stores.map { store in
+//                        storeCodeListVM.createSpecialCode(storeId: store.id)
+//                    }
+//                }, label: {
+//                    Text("Ad SpecialCode")
+//                }) //Apply when wanting to add specialCode
                 
                 SearchBar(searchText: $searchText, isSearching: $isSearching, selectedCategory: $selectedCategory)
 //                    .frame(height: 20)
@@ -133,9 +144,10 @@ struct ContentView: View {
                                                     } else {
                                                         HStack {
                                                             ZStack {
-                                                                Image("SwarovskiPic")
-                                                                    .resizable()
-                                                                    .scaledToFit()
+                                                                Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 1))
+                                                                    .colorMultiply(Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 1)))
+//                                                                    .resizable()
+//                                                                    .scaledToFit()
                                                                     .frame(width: 50, height: 50)
                                                                     .clipShape(Circle())
                                                                     .padding(.horizontal, 5)
