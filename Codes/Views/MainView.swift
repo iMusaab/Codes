@@ -21,6 +21,8 @@ struct MainView: View {
     return "المتاجر"
     }
     
+    
+    
     init() {
 //        UITabBar.appearance().barTintColor = UIColor(Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 0)))
 //            UITabBar.appearance().tintColor = .black

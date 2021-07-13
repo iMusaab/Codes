@@ -41,6 +41,9 @@ struct SettingsView: View {
     @StateObject var downloadModel = DownloadTaskModel()
     @State var urlText = ""
     
+//    guard let writeReviewURL = URL(string: "https://apps.apple.com/app/id1576285182?action=write-review")
+//            else { fatalError("Expected a valid URL") }
+    
     var settingCells: [SettingsCellModel] = [
         SettingsCellModel(title: "قيم التطبيق", icon: "star.fill"),
         SettingsCellModel(title: "تفعيل الاشعارات", icon: "bell.fill"),
@@ -55,11 +58,9 @@ struct SettingsView: View {
             ScrollView {
                 LazyVStack {
                     
-                    Button(action: {
-                        rateApp()
-                    }, label: {
+                    Link(destination: URL(string: "https://apps.apple.com/app/id1576285182?action=write-review")!) {
                         SettingsCell(title: settingCells[0].title, icon: settingCells[0].icon, outerGeometry: outerGeometry)
-                    })
+                    }
                     .padding(.top, 45)
                     
                     
