@@ -41,6 +41,7 @@ struct SearchBar: View {
                                 searchText = ""
                             }, label: {
                                 Image(systemName: "xmark.circle.fill")
+                                    .opacity(searchText.isEmpty ? 0 : 1)
                                     .padding(.trailing, 20)
                                     .padding(.vertical, 2)
                             })

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import UIKit
 
 
 //extension List {
@@ -88,7 +89,8 @@ struct ContentView: View {
 //                    .frame(height: 20)
                 //                    .padding(.bottom, 5)
                 
-                CategoriesScrollView(selectedCategory: $selectedCategory)
+                CategoriesScrollView(selectedCategory: $selectedCategory, isSearching: $isSearching)
+                    
                 //                        .padding(.top, 10)
                 
                 GeometryReader { outerGeometry in
@@ -115,7 +117,7 @@ struct ContentView: View {
                                             category = selectedCategory
                                         }, label: {
                                             NavigationLink(
-                                                destination: StoreCodesListView(store: store), tag: store.id, selection: $selection) {
+                                                destination: StoreCodesListView(store: store, isSearching: $isSearching), tag: store.id, selection: $selection) {
                                                 
                                                 
                                                 GeometryReader { innerGeometry in
@@ -174,6 +176,7 @@ struct ContentView: View {
                                                     }
                                                 }
                                                 .frame(width: outerGeometry.size.width - 30, height: 70)
+                                                
 //                                                .background((selection == store.id) ?
 //                                                                Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)).opacity(0.5) : Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 1)).opacity(0.7))
                                                 .background(Color(#colorLiteral(red: 0.9212613106, green: 0.9274845123, blue: 0.9214318395, alpha: 1)).opacity(0.7))
@@ -207,9 +210,12 @@ struct ContentView: View {
                                     
                                 }
                             }
+                            
                         }
 //                        .id("SCROLL_TO_TOP")
                         .onChange(of: selectedCategory) { category in
+//                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//                            isSearching = false
                             if let store = storeListVM.stores.first( where: { "\($0.category)".contains(category)
                             }) {
 //                                withAnimation {
@@ -237,6 +243,7 @@ struct ContentView: View {
                     Spacer()
 
                 })
+            .modifier(DismissingKeyboard())
 //            .background(Color(#colorLiteral(red: 0.9529411765, green: 0.9529411765, blue: 0.9529411765, alpha: 1)).ignoresSafeArea(.all))
             //            .embedInNavigationView()
             .accentColor(Color(#colorLiteral(red: 0.09803921569, green: 0.09803921569, blue: 0.09803921569, alpha: 1)))
@@ -245,6 +252,8 @@ struct ContentView: View {
         }
         .onAppear {
             storeListVM.getAll()
+//           UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+ 
 //            selectedCategory = category
 //            print("onappear is accessed on contentview")
             regesterVM.CreateUser {_ in
@@ -263,8 +272,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView(selectedCategory: $selectedCategory).environment(\.layoutDirection, .rightToLeft)
     }
 }
-
-
-
 
 

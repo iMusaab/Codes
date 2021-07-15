@@ -31,9 +31,9 @@ struct MainView: View {
         
 //        UINavigationBar.appearance().barTintColor = UIColor(Color.white.opacity(0.1))
     //        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-            UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-            UINavigationBar.appearance().isTranslucent = true
-            UINavigationBar.appearance().shadowImage = UIImage()
+//            UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+//            UINavigationBar.appearance().isTranslucent = true
+//            UINavigationBar.appearance().shadowImage = UIImage()
         }
     
     var body: some View {

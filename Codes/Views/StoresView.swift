@@ -79,7 +79,7 @@ struct StoresView: View {
 //                    .padding(.bottom, 5)
                 
 //                if !isSearching {
-                    CategoriesScrollView(selectedCategory: $selectedCategory)
+                CategoriesScrollView(selectedCategory: $selectedCategory, isSearching: $isSearching)
 //                        .padding(.top, 10)
                     
 //                }
@@ -103,7 +103,7 @@ struct StoresView: View {
     //                                "\($0)".contains(searchText) || searchText.isEmpty
                                 }), id: \.id) { store in
                                     NavigationLink(
-                                        destination: StoreCodesListView(store: store), tag: store.id, selection: $selection) {
+                                        destination: StoreCodesListView(store: store, isSearching: $isSearching), tag: store.id, selection: $selection) {
                                             
                                             if !store.picture.isEmpty {
                                             HStack {

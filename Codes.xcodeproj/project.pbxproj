@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D61AE6E326623B3E0080AA5C /* CategoriesScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61AE6E226623B3E0080AA5C /* CategoriesScrollView.swift */; };
 		D61AE6E626628A0C0080AA5C /* CatigoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61AE6E526628A0C0080AA5C /* CatigoriesView.swift */; };
-		D6354D85267A6833007040DE /* CodesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6354D84267A6833007040DE /* CodesUITests.swift */; };
 		D64B93672655D13F00CF85B9 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64B93662655D13F00CF85B9 /* AddButton.swift */; };
 		D68B5D0E265C9F1000EE5159 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68B5D0D265C9F1000EE5159 /* SettingsView.swift */; };
 		D6A34E5B26886EC5005DFEC5 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A34E5A26886EC5005DFEC5 /* SearchBar.swift */; };
@@ -46,22 +45,11 @@
 		D6C33C052699F3DA003EFC98 /* DownloadTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C33C042699F3DA003EFC98 /* DownloadTaskModel.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		D6354D87267A6833007040DE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D6A977702639D552003422B3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D6A977772639D552003422B3;
-			remoteInfo = Codes;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		60015501F9806FAEE609B3B2 /* Pods-Codes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codes.debug.xcconfig"; path = "Target Support Files/Pods-Codes/Pods-Codes.debug.xcconfig"; sourceTree = "<group>"; };
 		BFFED731E17CB2D82573189F /* Pods_Codes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D61AE6E226623B3E0080AA5C /* CategoriesScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesScrollView.swift; sourceTree = "<group>"; };
 		D61AE6E526628A0C0080AA5C /* CatigoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatigoriesView.swift; sourceTree = "<group>"; };
-		D6354D82267A6833007040DE /* CodesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6354D84267A6833007040DE /* CodesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesUITests.swift; sourceTree = "<group>"; };
 		D6354D86267A6833007040DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D64B93662655D13F00CF85B9 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
@@ -105,13 +93,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D6354D7F267A6833007040DE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D6A977752639D552003422B3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -163,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				D6A977782639D552003422B3 /* Codes.app */,
-				D6354D82267A6833007040DE /* CodesUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -264,24 +244,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D6354D81267A6833007040DE /* CodesUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D6354D8B267A6833007040DE /* Build configuration list for PBXNativeTarget "CodesUITests" */;
-			buildPhases = (
-				D6354D7E267A6833007040DE /* Sources */,
-				D6354D7F267A6833007040DE /* Frameworks */,
-				D6354D80267A6833007040DE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D6354D88267A6833007040DE /* PBXTargetDependency */,
-			);
-			name = CodesUITests;
-			productName = CodesUITests;
-			productReference = D6354D82267A6833007040DE /* CodesUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		D6A977772639D552003422B3 /* Codes */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D6A977872639D553003422B3 /* Build configuration list for PBXNativeTarget "Codes" */;
@@ -312,10 +274,6 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
-					D6354D81267A6833007040DE = {
-						CreatedOnToolsVersion = 12.4;
-						TestTargetID = D6A977772639D552003422B3;
-					};
 					D6A977772639D552003422B3 = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -337,19 +295,11 @@
 			projectRoot = "";
 			targets = (
 				D6A977772639D552003422B3 /* Codes */,
-				D6354D81267A6833007040DE /* CodesUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D6354D80267A6833007040DE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D6A977762639D552003422B3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -406,14 +356,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D6354D7E267A6833007040DE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D6354D85267A6833007040DE /* CodesUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D6A977742639D552003422B3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -455,55 +397,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		D6354D88267A6833007040DE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D6A977772639D552003422B3 /* Codes */;
-			targetProxy = D6354D87267A6833007040DE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		D6354D89267A6833007040DE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z9UFZ937K2;
-				INFOPLIST_FILE = CodesUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aljarba.CodesUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Codes;
-			};
-			name = Debug;
-		};
-		D6354D8A267A6833007040DE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z9UFZ937K2;
-				INFOPLIST_FILE = CodesUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aljarba.CodesUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Codes;
-			};
-			name = Release;
-		};
 		D6A977852639D553003422B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -635,6 +529,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Codes/Codes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Codes/Preview Content\"";
 				DEVELOPMENT_TEAM = Z9UFZ937K2;
 				ENABLE_PREVIEWS = YES;
@@ -663,12 +558,13 @@
 					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
 					"\"${PODS_ROOT}/GoogleAppMeasurement/Frameworks\"",
 				);
-				INFOPLIST_FILE = Codes/Info.plist;
+				INFOPLIST_FILE = "/Users/musab/Library/Mobile Documents/com~apple~CloudDocs/Personal/Codes/Codes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -737,7 +633,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.aljarba.Codes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -749,6 +645,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Codes/Codes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Codes/Preview Content\"";
 				DEVELOPMENT_TEAM = Z9UFZ937K2;
 				ENABLE_PREVIEWS = YES;
@@ -777,12 +674,13 @@
 					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
 					"\"${PODS_ROOT}/GoogleAppMeasurement/Frameworks\"",
 				);
-				INFOPLIST_FILE = Codes/Info.plist;
+				INFOPLIST_FILE = "/Users/musab/Library/Mobile Documents/com~apple~CloudDocs/Personal/Codes/Codes/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -851,22 +749,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.aljarba.Codes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D6354D8B267A6833007040DE /* Build configuration list for PBXNativeTarget "CodesUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D6354D89267A6833007040DE /* Debug */,
-				D6354D8A267A6833007040DE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		D6A977732639D552003422B3 /* Build configuration list for PBXProject "Codes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

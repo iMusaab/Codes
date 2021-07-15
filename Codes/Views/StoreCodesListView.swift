@@ -26,6 +26,8 @@ struct StoreCodesListView: View {
     let pasteboard = UIPasteboard.general
     
     
+    @Binding var isSearching: Bool
+    
     
     
     var body: some View {
@@ -51,7 +53,7 @@ struct StoreCodesListView: View {
                            
                             normalCodeCell(voteEnabled: voteEnabled, code: code, showHUD: $showHUD, storeCodeListVM: storeCodeListVM, store: store)
                         }
-                        
+                        .padding(.top, storeCodeListVM.storeSpecialCode != [] ? 0 : 20)
                         .onChange(of: storeCodeListVM.voteSaved, perform: { value in
                             if value {
                                 storeCodeListVM.getStoreCodesByStoreId(storeId: store.id, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
@@ -82,7 +84,8 @@ struct StoreCodesListView: View {
                                             })
                     .onAppear(perform: {
                         UITabBar.appearance().tintColor = .black
-                        
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        isSearching = false
                         storeCodeListVM.getStoreCodesByStoreId(storeId: store.id, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
                         
                         storeCodeListVM.getStoreSpecialCodeByStoreId(storeId: store.id, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
@@ -98,14 +101,15 @@ struct StoreCodesListView: View {
                             
                     })
             HUD()
-                .offset(y: showHUD ? -10: -150)
+                .offset(y: showHUD ? 15: -150)
                 .animation(.easeOut)
         }
     }
     
     struct StoreCodesListView_Previews: PreviewProvider {
+        @State static var isSearching = false
         static var previews: some View {
-            StoreCodesListView(store: StoreViewModel(store: Store(id: "", name: "thr", picture: "hungerPic", onlinePicture: "", codes: nil, category: [], timeAscending: Date())))
+            StoreCodesListView(store: StoreViewModel(store: Store(id: "", name: "thr", picture: "hungerPic", onlinePicture: "", codes: nil, category: [], timeAscending: Date())), isSearching: $isSearching)
         }
     }
     

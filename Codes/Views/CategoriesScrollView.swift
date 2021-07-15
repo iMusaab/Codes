@@ -7,11 +7,11 @@ struct Category: Hashable {
 
 struct CategoriesScrollView: View {
     @Binding var selectedCategory: String
-    
+    @Binding var isSearching: Bool
     var catigories: [Category] = []
     @State private var chosenCategoryHashValue: Int?
     
-    init(selectedCategory: Binding<String>) {
+    init(selectedCategory: Binding<String>, isSearching: Binding<Bool>) {
         catigories.append(Category(title: "الأشهر", icon: "PopularPic"))
         catigories.append(Category(title: "الأزياء", icon: "DressPic"))
         catigories.append(Category(title: "تطبيقات التوصيل", icon: "DelivryPic"))
@@ -25,6 +25,8 @@ struct CategoriesScrollView: View {
         catigories.append(Category(title: "أخرى", icon: nil))
         
         self._selectedCategory = selectedCategory
+        
+        self._isSearching = isSearching
         
         
     }
@@ -41,6 +43,8 @@ struct CategoriesScrollView: View {
                                 
                                 chosenCategoryHashValue = category.hashValue
                                 selectedCategory = category.title
+                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                isSearching = false
                                 
                             }, label: {
                                 HStack(spacing: 5) {
@@ -96,9 +100,10 @@ struct CategoriesScrollView: View {
 
 struct CategoriesScrollView_Previews: PreviewProvider {
     @State static var selectedCategory = "الكل"
+    @State static var isSearching = false
     static var previews: some View {
 
-        CategoriesScrollView(selectedCategory: $selectedCategory)
+        CategoriesScrollView(selectedCategory: $selectedCategory, isSearching: $isSearching)
             .environment(\.layoutDirection, .rightToLeft)
     }
 }

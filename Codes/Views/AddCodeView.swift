@@ -48,6 +48,7 @@ struct AddCodeView: View {
                                 .padding(.leading, 10)
                                 .frame(width: geometry.size.width * 0.9, height: 50, alignment: .center)
                                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(storeCodeVS.title.count > 12 ? Color.red : Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)), lineWidth: 0.8))
+//                                .disabled(storeCodeVS.title.count > 12)
                         
                         Text("بحد اقصى ١٢ حرف")
                             .font(.caption)
@@ -87,6 +88,7 @@ struct AddCodeView: View {
                     
                         
                 } .padding(.top, 60)
+                .modifier(DismissingKeyboard())
                 Button(action: {
                     
                     addCodeVM.addCodeToStore(storeId: store.id, storeCodeVS: storeCodeVS) { error in
