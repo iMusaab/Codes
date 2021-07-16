@@ -59,6 +59,7 @@ struct StoreCodesListView: View {
                                 storeCodeListVM.getStoreCodesByStoreId(storeId: store.id, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
                             }
                         })
+                        .animation(.default)
                         
                     } 
                     .sheet(isPresented: $isPresented, onDismiss: {

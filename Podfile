@@ -20,6 +20,8 @@ pod ‘SDWebImageSwiftUI’
 pod "SwiftUIRefresh"
 
 
+pod 'lottie-ios'
+
 
 
 

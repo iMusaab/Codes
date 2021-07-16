@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD43C9EE56A47F4C1EB020AF /* Pods_Codes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFFED731E17CB2D82573189F /* Pods_Codes.framework */; };
+		D604085F26A1218700725702 /* dislike.json in Resources */ = {isa = PBXBuildFile; fileRef = D604085D26A1218700725702 /* dislike.json */; };
+		D604086026A1218700725702 /* like.json in Resources */ = {isa = PBXBuildFile; fileRef = D604085E26A1218700725702 /* like.json */; };
+		D604086226A121E700725702 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604086126A121E700725702 /* LottieView.swift */; };
+		D604086526A12C6C00725702 /* LottieView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604086426A12C6C00725702 /* LottieView2.swift */; };
+		D604086726A12D6700725702 /* LikeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604086626A12D6700725702 /* LikeAnimation.swift */; };
+		D604086926A1394B00725702 /* DisLikeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604086826A1394B00725702 /* DisLikeAnimation.swift */; };
 		D61AE6E326623B3E0080AA5C /* CategoriesScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61AE6E226623B3E0080AA5C /* CategoriesScrollView.swift */; };
 		D61AE6E626628A0C0080AA5C /* CatigoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61AE6E526628A0C0080AA5C /* CatigoriesView.swift */; };
 		D64B93672655D13F00CF85B9 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64B93662655D13F00CF85B9 /* AddButton.swift */; };
@@ -48,6 +55,12 @@
 /* Begin PBXFileReference section */
 		60015501F9806FAEE609B3B2 /* Pods-Codes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codes.debug.xcconfig"; path = "Target Support Files/Pods-Codes/Pods-Codes.debug.xcconfig"; sourceTree = "<group>"; };
 		BFFED731E17CB2D82573189F /* Pods_Codes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Codes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D604085D26A1218700725702 /* dislike.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dislike.json; sourceTree = "<group>"; };
+		D604085E26A1218700725702 /* like.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = like.json; sourceTree = "<group>"; };
+		D604086126A121E700725702 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		D604086426A12C6C00725702 /* LottieView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView2.swift; sourceTree = "<group>"; };
+		D604086626A12D6700725702 /* LikeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeAnimation.swift; sourceTree = "<group>"; };
+		D604086826A1394B00725702 /* DisLikeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisLikeAnimation.swift; sourceTree = "<group>"; };
 		D61AE6E226623B3E0080AA5C /* CategoriesScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesScrollView.swift; sourceTree = "<group>"; };
 		D61AE6E526628A0C0080AA5C /* CatigoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatigoriesView.swift; sourceTree = "<group>"; };
 		D6354D84267A6833007040DE /* CodesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesUITests.swift; sourceTree = "<group>"; };
@@ -97,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD43C9EE56A47F4C1EB020AF /* Pods_Codes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +132,15 @@
 				BFFED731E17CB2D82573189F /* Pods_Codes.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D604086326A1238A00725702 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				D604085E26A1218700725702 /* like.json */,
+				D604085D26A1218700725702 /* dislike.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		D6354D83267A6833007040DE /* CodesUITests */ = {
@@ -160,6 +183,7 @@
 				D6A9777B2639D552003422B3 /* CodesApp.swift */,
 				D6A9777D2639D552003422B3 /* ContentView.swift */,
 				D6A9777F2639D553003422B3 /* Assets.xcassets */,
+				D604086326A1238A00725702 /* Lottie */,
 				D6A9778B2639D985003422B3 /* GoogleService-Info.plist */,
 				D6A977842639D553003422B3 /* Info.plist */,
 				D6A977812639D553003422B3 /* Preview Content */,
@@ -218,11 +242,11 @@
 		D6B6CE13263C2289006EAF64 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D6B6CE4B26484A0F006EAF64 /* MainView.swift */,
 				D6B6CE10263C2286006EAF64 /* StoreCodesListView.swift */,
 				D6B7E4DE265BFE63006CBD55 /* normalCodeCell.swift */,
 				D6B7E4D9265BF1F6006CBD55 /* SpecialCodeCell.swift */,
 				D6B6CE16263C2DE3006EAF64 /* AddCodeView.swift */,
-				D6B6CE4B26484A0F006EAF64 /* MainView.swift */,
 				D6B9E3D2265216F000C0E764 /* CodesView.swift */,
 				D6B9E3D5265229B000C0E764 /* CopyHUD.swift */,
 				D6B9E3D826532D8E00C0E764 /* CodeWithVotesView.swift */,
@@ -237,6 +261,10 @@
 				D6B34FB82691D61E00F3984C /* Launch Screen.storyboard */,
 				D6BEA01C269A0457009D58A9 /* DownloadProgressView.swift */,
 				D6BEA01E269A6C13009D58A9 /* PrivacyTermsView.swift */,
+				D604086126A121E700725702 /* LottieView.swift */,
+				D604086426A12C6C00725702 /* LottieView2.swift */,
+				D604086626A12D6700725702 /* LikeAnimation.swift */,
+				D604086826A1394B00725702 /* DisLikeAnimation.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,8 +287,6 @@
 			dependencies = (
 			);
 			name = Codes;
-			packageProductDependencies = (
-			);
 			productName = Codes;
 			productReference = D6A977782639D552003422B3 /* Codes.app */;
 			productType = "com.apple.product-type.application";
@@ -288,8 +314,6 @@
 				Base,
 			);
 			mainGroup = D6A9776F2639D552003422B3;
-			packageReferences = (
-			);
 			productRefGroup = D6A977792639D552003422B3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -304,7 +328,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D604085F26A1218700725702 /* dislike.json in Resources */,
 				D6A977832639D553003422B3 /* Preview Assets.xcassets in Resources */,
+				D604086026A1218700725702 /* like.json in Resources */,
 				D6A9778C2639D985003422B3 /* GoogleService-Info.plist in Resources */,
 				D6B34FB92691D61E00F3984C /* Launch Screen.storyboard in Resources */,
 				D6A977802639D553003422B3 /* Assets.xcassets in Resources */,
@@ -374,15 +400,19 @@
 				D6AAA99226534DCD0097D571 /* TestCells.swift in Sources */,
 				D6B6CE0E263C1B43006EAF64 /* StoreCodesVM.swift in Sources */,
 				D6A9777C2639D552003422B3 /* CodesApp.swift in Sources */,
+				D604086926A1394B00725702 /* DisLikeAnimation.swift in Sources */,
 				D6A34E5B26886EC5005DFEC5 /* SearchBar.swift in Sources */,
 				D6B9E3D3265216F000C0E764 /* CodesView.swift in Sources */,
+				D604086526A12C6C00725702 /* LottieView2.swift in Sources */,
 				D6B6CE0B263C1A34006EAF64 /* StoreCode.swift in Sources */,
 				D6A978572639E953003422B3 /* View+Extensions.swift in Sources */,
 				D6BEA023269B49BA009D58A9 /* PDF.swift in Sources */,
 				D6B9E3D926532D8F00C0E764 /* CodeWithVotesView.swift in Sources */,
+				D604086226A121E700725702 /* LottieView.swift in Sources */,
 				D6A34E5D268A3A09005DFEC5 /* StoresView.swift in Sources */,
 				D6B7E4DA265BF1F6006CBD55 /* SpecialCodeCell.swift in Sources */,
 				D61AE6E626628A0C0080AA5C /* CatigoriesView.swift in Sources */,
+				D604086726A12D6700725702 /* LikeAnimation.swift in Sources */,
 				D6BEA01D269A0457009D58A9 /* DownloadProgressView.swift in Sources */,
 				D6B6CE17263C2DE3006EAF64 /* AddCodeView.swift in Sources */,
 				D6BEA021269B499A009D58A9 /* PDFURLVM.swift in Sources */,
@@ -529,7 +559,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Codes/Codes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Codes/Preview Content\"";
 				DEVELOPMENT_TEAM = Z9UFZ937K2;
 				ENABLE_PREVIEWS = YES;
@@ -645,7 +676,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Codes/Codes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"Codes/Preview Content\"";
 				DEVELOPMENT_TEAM = Z9UFZ937K2;
 				ENABLE_PREVIEWS = YES;
