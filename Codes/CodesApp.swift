@@ -25,6 +25,8 @@ struct CodesApp: App {
     }
 }
 
+
+
 extension UIApplication {
     func addTapGestureRecognizer() {
         guard let window = windows.first else { return }

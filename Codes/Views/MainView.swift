@@ -29,10 +29,11 @@ struct MainView: View {
             UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
 //            UITabBar.appearance().clipsToBounds = true
         
+        
 //        UINavigationBar.appearance().barTintColor = UIColor(Color.white.opacity(0.1))
     //        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
 //            UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//            UINavigationBar.appearance().isTranslucent = true
+            UINavigationBar.appearance().isTranslucent = true
 //            UINavigationBar.appearance().shadowImage = UIImage()
         }
     
@@ -69,6 +70,7 @@ struct MainView: View {
         .navigationBarTitle(shownTitle)
         .accentColor(Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)))
         .embedInNavigationView()
+//        .modifier(DismissingKeyboard())
         .accentColor(Color(#colorLiteral(red: 0.09803921569, green: 0.09803921569, blue: 0.09803921569, alpha: 1)))
     }
 }

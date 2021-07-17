@@ -6,6 +6,7 @@ extension View {
     func embedInNavigationView() -> some View {
         NavigationView { self }.navigationViewStyle(StackNavigationViewStyle())
     }
+    
 }
 
 extension UINavigationController {

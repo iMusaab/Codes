@@ -28,6 +28,15 @@ struct StoreCodesListView: View {
     
     @Binding var isSearching: Bool
     
+    var codesArraysAreEmpty: Bool {
+//        return false
+        if storeCodeListVM.normalCodeSaved && storeCodeListVM.specialCodeSaved {
+            return storeCodeListVM.storeSpecialCode.isEmpty && storeCodeListVM.storeCodes.isEmpty
+        }
+            
+        return false
+    }
+    
     
     
     var body: some View {
@@ -39,6 +48,11 @@ struct StoreCodesListView: View {
             
                 ScrollView {
                     LazyVStack {
+                        
+                        if codesArraysAreEmpty {
+                            Text("لم يتم إضافة اي كوبونات لهذا المتجر")
+                                .padding(.top, 100)
+                        }
                         
                         if storeCodeListVM.storeSpecialCode != [] {
                             
@@ -93,6 +107,7 @@ struct StoreCodesListView: View {
                         
                     })
                 }
+                
                 .background(
                     VStack {
                         LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9215686275, green: 0.9294117647, blue: 0.9215686275, alpha: 1)), Color.white]), startPoint: .top, endPoint: .bottom)
