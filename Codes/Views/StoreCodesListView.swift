@@ -23,8 +23,11 @@ struct StoreCodesListView: View {
     
     @State private var showHUD = false
     
+    @State private var showingAlert = false
+    
     let pasteboard = UIPasteboard.general
     
+    @State var newCodeSaved = false
     
     @Binding var isSearching: Bool
     
@@ -77,10 +80,18 @@ struct StoreCodesListView: View {
                         
                     } 
                     .sheet(isPresented: $isPresented, onDismiss: {
-                            storeCodeListVM.getStoreById(storeId: store.id
-                            )}, content: {
-                                AddCodeView(store: store)
+                            storeCodeListVM.getStoreById(storeId: store.id)
+                        if newCodeSaved {
+                                                         showingAlert = true
+                            newCodeSaved = false
+                        }
+                                                         
+                            }, content: {
+                                AddCodeView(store: store, newCodeSaved: $newCodeSaved)
                             })
+                    .alert(isPresented: $showingAlert) {
+                                Alert(title: Text("شكرا لك ❤️"), message: Text("تم إرسال الكوبون بنجاح .. يتم مراجعة الكوبونات قبل إضافتها."), dismissButton: .default(Text("موافق")))
+                            }
                     
                     .navigationBarTitle(store.name).navigationBarTitleDisplayMode(.inline)
                     .navigationBarItems(trailing:
