@@ -33,9 +33,10 @@ struct CategoriesScrollView: View {
     
     var body: some View {
         
-        VStack {
+        
             
             ScrollView(.horizontal, showsIndicators: false) {
+                VStack(alignment: .trailing) {
                 ScrollViewReader { value in
                     HStack(alignment: .center, spacing: 2) {
                         ForEach(catigories, id: \.self) { category in
@@ -91,7 +92,7 @@ struct CategoriesScrollView: View {
                 }
                 
                 
-            }
+                } .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 7)
         }
     }

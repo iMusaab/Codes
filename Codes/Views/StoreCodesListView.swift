@@ -62,7 +62,7 @@ struct StoreCodesListView: View {
                             ForEach(storeCodeListVM.storeSpecialCode, id: \.storeCodeId) { specialCode in
                                 SpecialStoreCell(specialCode: specialCode, showHUD: $showHUD)
                             }
-                            .padding(.top, 20)
+//                            .padding(.top, 20)
                         }
                         
                         
@@ -70,7 +70,7 @@ struct StoreCodesListView: View {
                            
                             normalCodeCell(voteEnabled: voteEnabled, code: code, showHUD: $showHUD, storeCodeListVM: storeCodeListVM, store: store)
                         }
-                        .padding(.top, storeCodeListVM.storeSpecialCode != [] ? 0 : 20)
+//                        .padding(.top, storeCodeListVM.storeSpecialCode != [] ? 0 : 20)
                         .onChange(of: storeCodeListVM.voteSaved, perform: { value in
                             if value {
                                 storeCodeListVM.getStoreCodesByStoreId(storeId: store.id, userId: regesterVM.defaults.string(forKey: "userId") ?? "")
@@ -78,7 +78,8 @@ struct StoreCodesListView: View {
                         })
                         .animation(.default)
                         
-                    } 
+                    }
+                    .padding(.top, 20)
                     .sheet(isPresented: $isPresented, onDismiss: {
                             storeCodeListVM.getStoreById(storeId: store.id)
                         if newCodeSaved {
