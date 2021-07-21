@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct StoreCodesViewState {
     var title: String = ""
@@ -25,6 +26,8 @@ class AddCodeViewModel: ObservableObject {
     @Published var saved: Bool = false
     @Published var message = ""
     @Published var store: StoreViewModel?
+    @Published var defaults = UserDefaults.standard
+    @Published var showErrorMessage = false
     
     var storeCodeVS = StoreCodesViewState()
     
@@ -36,9 +39,15 @@ class AddCodeViewModel: ObservableObject {
             switch result {
             case .success(_):
                 completion(nil)
+                self.fireStoreManager.updateUserTimeStamp(userId: Auth.auth().currentUser?.uid ?? self.defaults.string(forKey: "userId") ?? "") { result in
+                    
+                }
                 self.saved = true
             case .failure(let error):
+                print("Error Adding a code to firestore", error)
+                self.showErrorMessage = true
                 completion(error)
+                
             }
         }
     }

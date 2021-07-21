@@ -54,6 +54,8 @@ struct ContentView: View {
     
     @State var selection: String? = nil
     
+    @State var userCreated: Bool?
+    
     //    init() {
     //
 //            UINavigationBar.appearance().barTintColor = .clear
@@ -195,7 +197,16 @@ struct ContentView: View {
                                         //                                .background((selection != nil) ? Color.red : Color.clear)
                                         
                                     }
-                                } else {
+                                } else if userCreated == false {
+                                    HStack(alignment: .center) {
+                                        Spacer()
+                                        Text("مشكلة في الخادم: تسجيل الدخول لم يتم")
+                                        //                                            .scaleEffect(1.5, anchor: .center)
+                                        Spacer()
+                                    }.frame(height: outerGeometry.size.height / 2, alignment: .center)
+                                }
+                                
+                                else {
                                     
                                     VStack {
                                         HStack(alignment: .center) {
@@ -251,13 +262,40 @@ struct ContentView: View {
             
         }
         .onAppear {
-            storeListVM.getAll()
+            if regesterVM.signedIn {
+                regesterVM.checkUserAgainstDatabase {result in
+                    switch result {
+                    case .success(_):
+                        storeListVM.getAll()
+                    case .failure(_):
+                        regesterVM.CreateUser { result in
+                            switch result {
+                            case .success(_):
+                                storeListVM.getAll()
+                            case .failure(_):
+                                userCreated = false
+                            }
+                            
+                        }
+                    }
+                }
+                
+            } else {
+                regesterVM.CreateUser { result in
+                    switch result {
+                    case .success(_):
+                        storeListVM.getAll()
+                    case .failure(_):
+                        userCreated = false
+                    }
+                    
+                }
+            
 //           UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
  
 //            selectedCategory = category
 //            print("onappear is accessed on contentview")
-            regesterVM.CreateUser {_ in
-                print("User created")
+            
                 
             }
         }

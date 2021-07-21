@@ -20,6 +20,8 @@ struct AddCodeView: View {
     
     @Binding var newCodeSaved: Bool
     
+//    @State private var showingAlert: Bool = false
+    
     
     
     
@@ -117,6 +119,9 @@ struct AddCodeView: View {
                 .padding(.top, 60)
                 .disabled(addButtonDisabled)
             }
+            .alert(isPresented: $addCodeVM.showErrorMessage) {
+                        Alert(title: Text("لم تتم الإضافة 💔"), message: Text("يمكنك إضافة كوبون واحد فقط في الساعة!"), dismissButton: .default(Text("موافق")))
+                    }
                     .onChange(of: addCodeVM.saved) { value in
                         if value {
                             newCodeSaved = true

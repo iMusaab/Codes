@@ -8,5 +8,6 @@
 import Foundation
 
 struct User: Codable {
-    let userID: String = ""
+    var userID: String = ""
+    var timeStamp: Date = Date() - 1
 }

@@ -20,6 +20,21 @@ class FirestoreManager {
         db = Firestore.firestore()
     }
     
+    func updateUserTimeStamp(userId: String, completion: @escaping (Result<String?, Error>) -> Void) {
+        
+        let ref = db.collection("users").document(userId).updateData(
+            [
+                "timeStamp": FieldValue.serverTimestamp()
+            ]) { err in
+            if let err = err {
+                print("Error updating user timestamp: \(err)")
+                completion(.failure(err))
+            } else {
+                print("user timestamp updated")
+                completion(.success(nil))
+            }
+        }
+    }
     
     func addStoreSpecialCode(storeId: String) {
         var ref: DocumentReference? = nil
@@ -180,14 +195,11 @@ class FirestoreManager {
         func updateStore(storeId: String, storeCode: StoreCode, completion: @escaping (Result<Store?, Error>) -> Void) {
             do {
                 
-                let _ = try db.collection("stores").document(storeId).collection("codes").addDocument(from: storeCode)
-                
-                self.getStoreById(storeId: storeId) { result in
-                    switch result {
-                    case .success(let store):
-                        completion(.success(store))
-                    case .failure(let error):
-                        completion(.failure(error))
+                let _ = try db.collection("stores").document(storeId).collection("codes").addDocument(from: storeCode) { err in
+                    if let err = err {
+                        completion(.failure(err))
+                    } else {
+                        completion(.success(nil))
                     }
                 }
                 
