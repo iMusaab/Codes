@@ -122,6 +122,13 @@ struct AddCodeView: View {
             .alert(isPresented: $addCodeVM.showErrorMessage) {
                         Alert(title: Text("لم تتم الإضافة 💔"), message: Text("يمكنك إضافة كوبون واحد فقط في الساعة!"), dismissButton: .default(Text("موافق")))
                     }
+            .onChange(of: addCodeVM.showErrorMessage) { value in
+                if value {
+                    storeCodeVS.title = ""
+                    storeCodeVS.Description = ""
+                    storeCodeVS.code = ""
+                }
+            }
                     .onChange(of: addCodeVM.saved) { value in
                         if value {
                             newCodeSaved = true
