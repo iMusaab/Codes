@@ -120,8 +120,9 @@ struct AddCodeView: View {
                 .disabled(addButtonDisabled)
             }
             .alert(isPresented: $addCodeVM.showErrorMessage) {
-                        Alert(title: Text("لم تتم الإضافة 💔"), message: Text("يمكنك إضافة كوبون واحد فقط في الساعة!"), dismissButton: .default(Text("موافق")))
+                        Alert(title: Text("لم تتم الإضافة 💔"), message: Text("يمكنك إضافة كوبون واحد فقط كل ساعة!"), dismissButton: .default(Text("موافق")))
                     }
+//            .accentColor(Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)))
             .onChange(of: addCodeVM.showErrorMessage) { value in
                 if value {
                     storeCodeVS.title = ""

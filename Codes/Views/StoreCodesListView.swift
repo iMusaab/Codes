@@ -42,6 +42,8 @@ struct StoreCodesListView: View {
     
     
     
+    
+    
     var body: some View {
         
         
@@ -93,6 +95,7 @@ struct StoreCodesListView: View {
                     .alert(isPresented: $showingAlert) {
                                 Alert(title: Text("شكرا لك ❤️"), message: Text("تم إرسال الكوبون بنجاح .. يتم مراجعة الكوبونات قبل إضافتها."), dismissButton: .default(Text("موافق")))
                             }
+//                    .accentColor(Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)))
                     
                     .navigationBarTitle(store.name).navigationBarTitleDisplayMode(.inline)
                     .navigationBarItems(trailing:

@@ -16,6 +16,7 @@ struct CodesApp: App {
     
     init() {
 //        FirebaseApp.configure()
+//            UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(Color(#colorLiteral(red: 0.968627451, green: 0.2156862745, blue: 0.3411764706, alpha: 1)))
     }
     
     var body: some Scene {
