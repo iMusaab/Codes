@@ -64,6 +64,8 @@ class StoreCodeListViewModel: ObservableObject {
     @Published var specialCodeSaved = false
     @Published var normalCodeSaved = false
     
+    @Published var codesLoaded = false
+    
     
     
     

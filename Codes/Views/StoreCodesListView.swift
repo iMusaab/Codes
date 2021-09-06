@@ -52,7 +52,19 @@ struct StoreCodesListView: View {
             
             
                 ScrollView {
+                    
                     LazyVStack {
+                        
+                        
+                        if !storeCodeListVM.normalCodeSaved || !storeCodeListVM.specialCodeSaved {
+                            
+                            VStack {
+                                HStack(alignment: .center) {
+                                    ProgressView()
+                                        .progressViewStyle(CircularProgressViewStyle())
+                                }
+                            }
+                        }
                         
                         if codesArraysAreEmpty {
                             Text("لم يتم إضافة اي كوبونات لهذا المتجر")
