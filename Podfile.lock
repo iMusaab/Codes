@@ -212,6 +212,9 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - Adjust (4.29.3):
+    - Adjust/Core (= 4.29.3)
+  - Adjust/Core (4.29.3)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -366,6 +369,7 @@ PODS:
     - Introspect (~> 0.1.0)
 
 DEPENDENCIES:
+  - Adjust (~> 4.29.3)
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Firestore
@@ -379,6 +383,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - abseil
+    - Adjust
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
@@ -409,6 +414,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
+  Adjust: ad533ac69e620bda48fa26a26fea2343aba39449
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseAnalytics: 3bb096873ee0d7fa4b6c70f5e9166b6da413cc7f
@@ -437,6 +443,6 @@ SPEC CHECKSUMS:
   SDWebImageSwiftUI: 8a3923c95108312b03a599ec1498754af55a6819
   SwiftUIRefresh: ca6ae2718d25aad5dd68bbf5d2ae36ef6ade98bf
 
-PODFILE CHECKSUM: 281087447cd7d8edf099922382621d17430f67b1
+PODFILE CHECKSUM: ddb930affe3abd37a8f92c0f349ef59447bcb926
 
 COCOAPODS: 1.10.1

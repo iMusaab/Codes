@@ -22,7 +22,7 @@ pod "SwiftUIRefresh"
 
 pod 'lottie-ios'
 
-
+pod 'Adjust', '~> 4.29.3'
 
 
 # Optionally, include the Swift extensions if you're using Swift.

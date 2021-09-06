@@ -30,6 +30,11 @@ struct SpecialStoreCell: View {
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(.white)
                     Spacer ()
+                    Button(action: shareButton) {
+                        Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(.white)
+                    }
+//                    .padding(.trailing, 30)
                 }
                 
                 Spacer()
@@ -95,6 +100,31 @@ struct SpecialStoreCell: View {
         }
         
         .frame(height: 220, alignment: .center)
+    }
+    
+    func shareButton() {
+        if specialCode.code.isEmpty {
+            if !specialCode.url.isEmpty {
+                let shareActivity = UIActivityViewController(activityItems: ["\(specialCode.Description)\n\n\(specialCode.url)"], applicationActivities: nil)
+                if let vc = UIApplication.shared.windows.first?.rootViewController{
+                    shareActivity.popoverPresentationController?.sourceView = vc.view
+                    //Setup share activity position on screen on bottom center
+                    shareActivity.popoverPresentationController?.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height, width: 0, height: 0)
+                    shareActivity.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+                    vc.present(shareActivity, animated: true, completion: nil)
+                }
+            }
+        }
+        else {
+            let shareActivity = UIActivityViewController(activityItems: ["\(specialCode.Description)\n\n Code: \(specialCode.code)"], applicationActivities: nil)
+            if let vc = UIApplication.shared.windows.first?.rootViewController{
+                shareActivity.popoverPresentationController?.sourceView = vc.view
+                //Setup share activity position on screen on bottom center
+                shareActivity.popoverPresentationController?.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height, width: 0, height: 0)
+                shareActivity.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+                vc.present(shareActivity, animated: true, completion: nil)
+            }
+        }
     }
 }
 

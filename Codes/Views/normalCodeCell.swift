@@ -103,10 +103,20 @@ struct normalCodeCell: View {
                         
                         VStack {
                             HStack(alignment: .top) {
-                                Text(code.title)
-                                    .font(.system(size: 20, weight: .bold))
-                                    .foregroundColor(Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)))
+                                    Text(code.title)
+                                        .font(.system(size: 20, weight: .bold))
+                                        .foregroundColor(Color(#colorLiteral(red: 0.05882352941, green: 0.05882352941, blue: 0.05882352941, alpha: 1)))
+                                
                                 Spacer ()
+//                                shareButton(uiImage: UIImage(named: "AdidasPic")!)
+//                                        .padding(.trailing, 30)
+                                Button(action: shareButton) {
+                                    Image(systemName: "square.and.arrow.up")
+                                            .foregroundColor(.black)
+                                }
+                                .padding(.trailing, 30)
+
+                                
                             }
                             Spacer()
                             HStack {
@@ -120,6 +130,7 @@ struct normalCodeCell: View {
                             Spacer()
                             
                             HStack(alignment: .bottom) {
+                                
                                 Spacer()
                                 Button(action: {
                                     if code.code.isEmpty {
@@ -153,6 +164,8 @@ struct normalCodeCell: View {
                                         
                                     
                                 }).padding(.trailing, 10)
+                                
+                                
                             }
                             .padding(.trailing, 30)
                             
@@ -178,6 +191,30 @@ struct normalCodeCell: View {
         }
     }
     
+    func shareButton() {
+        if code.code.isEmpty {
+            if !code.url.isEmpty {
+                let shareActivity = UIActivityViewController(activityItems: ["\(code.Description)\n\n\(code.url)"], applicationActivities: nil)
+                if let vc = UIApplication.shared.windows.first?.rootViewController{
+                    shareActivity.popoverPresentationController?.sourceView = vc.view
+                    //Setup share activity position on screen on bottom center
+                    shareActivity.popoverPresentationController?.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height, width: 0, height: 0)
+                    shareActivity.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+                    vc.present(shareActivity, animated: true, completion: nil)
+                }
+            }
+        }
+        else {
+            let shareActivity = UIActivityViewController(activityItems: ["\(code.Description)\n\n Code: \(code.code)"], applicationActivities: nil)
+            if let vc = UIApplication.shared.windows.first?.rootViewController{
+                shareActivity.popoverPresentationController?.sourceView = vc.view
+                //Setup share activity position on screen on bottom center
+                shareActivity.popoverPresentationController?.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height, width: 0, height: 0)
+                shareActivity.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+                vc.present(shareActivity, animated: true, completion: nil)
+            }
+        }
+    }
 }
 
 
